@@ -1,0 +1,271 @@
+<div class="catalogo-container">
+
+  <!-- ENCABEZADO PREMIUM DEL CATÁLOGO -->
+  <header class="catalogo-header">
+    <h2>Catálogo Técnico Especializado</h2>
+    <p>Soluciones geoespaciales e instrumentos de precisión extrema de marcas globales líderes en el sector.</p>
+    
+    <!-- BUSCADOR INTELIGENTE EN TIEMPO REAL (Estilo Apple / GEOCOM) -->
+    <div class="buscador-seccion">
+      <div class="buscador-wrapper">
+        <svg class="buscador-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"/>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        <input 
+          type="text" 
+          [(ngModel)]="terminoBusqueda" 
+          (input)="filtrarProductosPorTexto()"
+          placeholder="Buscar equipo, marca, modelo o tecnología..." 
+          class="input-buscador"
+        />
+        <button *ngIf="terminoBusqueda" class="btn-clear-search" (click)="terminoBusqueda = ''; filtrarProductosPorTexto()">
+          &times;
+        </button>
+      </div>
+      <div class="buscador-resultados" *ngIf="terminoBusqueda">
+        Se encontraron {{ productos.length }} coincidencia(s)
+      </div>
+    </div>
+  </header>
+
+  <!-- Estado de Error General -->
+  <div *ngIf="errorCarga" class="error-container">
+    <h3>📡 Conexión de API Pendiente</h3>
+    <p>Ocurrió un error al intentar conectarse al Backend en Spring Boot. Asegúrese de que el contenedor de Docker y el
+      servidor Java estén activos.</p>
+    <button (click)="inicializarCatalogo()" class="btn-retry">Reintentar Conexión</button>
+  </div>
+
+  <div *ngIf="!errorCarga" class="catalogo-layout">
+
+    <!-- ================================================================
+         SIDEBAR DE CATEGORÍAS (MENÚ EDITORIAL MINIMALISTA)
+         ================================================================ -->
+    <aside class="catalogo-sidebar">
+      <h3>Tecnologías</h3>
+      <ul>
+        <!-- Opción para mostrar todos -->
+        <li [class.active]="categoriaSeleccionada === null">
+          <button (click)="mostrarTodosLosProductos()">
+            <svg class="sidebar-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="7" height="9" rx="1" />
+              <rect x="14" y="3" width="7" height="5" rx="1" />
+              <rect x="14" y="10" width="7" height="9" rx="1" />
+              <rect x="3" y="16" width="7" height="5" rx="1" />
+            </svg>
+            Todos los Productos
+          </button>
+        </li>
+
+        <!-- Categorías dinámicas -->
+        <li *ngFor="let cat of categorias" [class.active]="categoriaSeleccionada?.id === cat.id">
+          <button (click)="filtrarPorCategoria(cat)">
+            <!-- Icono GNSS -->
+            <svg *ngIf="cat.nombre === 'GNSS'" class="sidebar-icon" xmlns="http://www.w3.org/2000/svg" width="18"
+              height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3" />
+              <path d="M3 16a9 9 0 0 1 18-8" />
+              <path d="M21 8a9 9 0 0 1-18 8" />
+            </svg>
+
+            <!-- Icono Óptica -->
+            <svg *ngIf="cat.nombre === 'Óptica'" class="sidebar-icon" xmlns="http://www.w3.org/2000/svg" width="18"
+              height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <line x1="22" y1="12" x2="18" y2="12" />
+              <line x1="6" y1="12" x2="2" y2="12" />
+              <line x1="12" y1="6" x2="12" y2="2" />
+              <line x1="12" y1="22" x2="12" y2="18" />
+            </svg>
+
+            <!-- Icono Escáner Láser -->
+            <svg *ngIf="cat.nombre === 'Escáner Láser'" class="sidebar-icon" xmlns="http://www.w3.org/2000/svg"
+              width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 7V5a2 2 0 0 1 2-2h2" />
+              <path d="M17 3h2a2 2 0 0 1 2 2v2" />
+              <path d="M21 17v2a2 2 0 0 1-2 2h-2" />
+              <path d="M3 17v2a2 2 0 0 1 2 2h2" />
+              <path d="M7 12h10" />
+            </svg>
+
+            <!-- Icono Drones -->
+            <svg *ngIf="cat.nombre === 'Drones'" class="sidebar-icon" xmlns="http://www.w3.org/2000/svg" width="18"
+              height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="2" />
+              <path d="M12 2v4" />
+              <path d="M12 18v4" />
+              <path d="M2 12h4" />
+              <path d="M18 12h4" />
+              <path d="m4.9 4.9 2.8 2.8" />
+              <path d="m16.3 16.3 2.8 2.8" />
+              <path d="m4.9 19.1 2.8-2.8" />
+              <path d="m16.3 7.7 2.8-2.8" />
+            </svg>
+
+            <!-- Icono Software -->
+            <svg *ngIf="cat.nombre === 'Software'" class="sidebar-icon" xmlns="http://www.w3.org/2000/svg" width="18"
+              height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="4 17 10 11 4 5" />
+              <line x1="12" y1="19" x2="20" y2="19" />
+            </svg>
+
+            <!-- Icono por defecto -->
+            <svg
+              *ngIf="cat.nombre !== 'GNSS' && cat.nombre !== 'Óptica' && cat.nombre !== 'Escáner Láser' && cat.nombre !== 'Drones' && cat.nombre !== 'Software'"
+              class="sidebar-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" />
+            </svg>
+            {{ cat.nombre }}
+          </button>
+        </li>
+      </ul>
+    </aside>
+
+    <!-- ================================================================
+         GRID PRINCIPAL DE PRODUCTOS
+         ================================================================ -->
+    <section class="catalogo-content">
+
+      <!-- Cargando Productos -->
+      <div *ngIf="cargandoProductos" class="loading-products">
+        <div class="spinner"></div>
+        <p>Filtrando catálogo técnico...</p>
+      </div>
+
+      <!-- No hay productos (Empty State Minimalista) -->
+      <div *ngIf="!cargandoProductos && productos.length === 0" class="no-products">
+        <svg class="no-products-icon-svg" xmlns="http://www.w3.org/2000/svg" width="40" height="40"
+          viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+          stroke-linejoin="round">
+          <path
+            d="m6 14 1.45-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.55 6a2 2 0 0 1-1.94 1.5H4a2 2 0 0 1-2-2V5c0-1.1.9-2 2-2h3.93a2 2 0 0 1 1.66.9l.82 1.2a2 2 0 0 0 1.66.9H18a2 2 0 0 1 2 2v2" />
+        </svg>
+        <h3>No se encontraron productos</h3>
+        <p>Actualmente no hay equipos disponibles listados bajo la división de {{ categoriaSeleccionada?.nombre }}.</p>
+      </div>
+
+      <!-- ============================================================
+           GRID DE TARJETAS — SIMETRÍA ESTRICTA
+           ============================================================ -->
+      <div *ngIf="!cargandoProductos && productos.length > 0" class="productos-grid">
+        <div *ngFor="let prod of productos" class="producto-card">
+
+          <!-- Badge de categoría con glassmorphism -->
+          <div class="producto-badge">{{ prod.categoria?.nombre }}</div>
+
+          <!-- Contenedor de imagen: altura fija 240px, object-fit: cover -->
+          <div class="producto-imagen-box">
+            <ng-container *ngIf="prod.urlImagen; else placeholder">
+              <img [src]="prod.urlImagen" alt="Imagen de {{prod.nombre}}" class="producto-imagen" />
+            </ng-container>
+            <ng-template #placeholder>
+              <div class="placeholder-imagen">
+                <span>📷</span>
+                <p>{{ prod.marca }} {{ prod.modelo }}</p>
+              </div>
+            </ng-template>
+          </div>
+
+          <!-- Información del producto -->
+          <div class="producto-info">
+            <span class="producto-marca">{{ prod.marca }}</span>
+            <h3 class="producto-nombre">{{ prod.nombre }}</h3>
+            <p class="producto-modelo"><strong>Modelo:</strong> {{ prod.modelo }}</p>
+            <p class="producto-descripcion">{{ prod.descripcionTecnica }}</p>
+          </div>
+
+          <!-- Panel Expandible de Especificaciones Premium (Quick Spec View) -->
+          <div class="ficha-especificaciones" *ngIf="estaTarjetaExpandida(prod.id)">
+            <div class="spec-divider"></div>
+            <div class="spec-list">
+              <!-- Renderizado dinámico si el administrador configuró especificaciones personalizadas -->
+              <ng-container *ngIf="parsearEspecificaciones(prod.especificaciones).length > 0; else fallbackEstatico">
+                <div class="spec-row" *ngFor="let spec of parsearEspecificaciones(prod.especificaciones)">
+                  <span>{{ spec.clave }}</span>
+                  <strong>{{ spec.valor }}</strong>
+                </div>
+              </ng-container>
+
+              <!-- Fallback estático elegante por categoría si no se han configurado especificaciones personalizadas -->
+              <ng-template #fallbackEstatico>
+                <ng-container [ngSwitch]="prod.categoria?.nombre">
+                  <!-- Caso GNSS -->
+                  <ng-container *ngSwitchCase="'GNSS'">
+                    <div class="spec-row"><span>Precisión RTK</span><strong>± 8 mm + 1 ppm</strong></div>
+                    <div class="spec-row"><span>Canales GNSS</span><strong>555 canales</strong></div>
+                    <div class="spec-row"><span>Protección</span><strong>IP68 (Sumergible)</strong></div>
+                    <div class="spec-row"><span>Batería</span><strong>Hasta 12 horas</strong></div>
+                  </ng-container>
+                  <!-- Caso Óptica -->
+                  <ng-container *ngSwitchCase="'Óptica'">
+                    <div class="spec-row"><span>Precisión Angular</span><strong>1" / 2" / 5"</strong></div>
+                    <div class="spec-row"><span>Alcance sin Prisma</span><strong>Hasta 1000m</strong></div>
+                    <div class="spec-row"><span>Aumento de Lente</span><strong>30x</strong></div>
+                    <div class="spec-row"><span>Plomada</span><strong>Láser visible</strong></div>
+                  </ng-container>
+                  <!-- Caso Escáner Láser -->
+                  <ng-container *ngSwitchCase="'Escáner Láser'">
+                    <div class="spec-row"><span>Velocidad Muestreo</span><strong>1,000,000 pts/s</strong></div>
+                    <div class="spec-row"><span>Alcance Máximo</span><strong>Hasta 120m</strong></div>
+                    <div class="spec-row"><span>Cámara Integrada</span><strong>HDR 3D, 80 MP</strong></div>
+                    <div class="spec-row"><span>Precisión 3D</span><strong>1.9mm @ 10m</strong></div>
+                  </ng-container>
+                  <!-- Caso Drones -->
+                  <ng-container *ngSwitchCase="'Drones'">
+                    <div class="spec-row"><span>Autonomía Vuelo</span><strong>Hasta 59 min</strong></div>
+                    <div class="spec-row"><span>Sensor de Cámara</span><strong>42 MP Full-Frame</strong></div>
+                    <div class="spec-row"><span>Cobertura Máxima</span><strong>400 ha @ 3cm GSD</strong></div>
+                    <div class="spec-row"><span>Precisión Vertical</span><strong>Hasta 2.0cm</strong></div>
+                  </ng-container>
+                  <!-- Caso Software -->
+                  <ng-container *ngSwitchCase="'Software'">
+                    <div class="spec-row"><span>Plataforma</span><strong>Windows 10/11 x64</strong></div>
+                    <div class="spec-row"><span>Formatos Entrada</span><strong>CAD, LAS, TIFF, CSV</strong></div>
+                    <div class="spec-row"><span>Licenciamiento</span><strong>Perpetuo / Nube</strong></div>
+                    <div class="spec-row"><span>Procesamiento</span><strong>Modelado y Mallas 3D</strong></div>
+                  </ng-container>
+                  <!-- Caso General -->
+                  <ng-container *ngSwitchDefault>
+                    <div class="spec-row"><span>Estándar</span><strong>Industrial Grado A</strong></div>
+                    <div class="spec-row"><span>Certificación</span><strong>ISO 9001:2015</strong></div>
+                    <div class="spec-row"><span>Garantía</span><strong>24 Meses TEKTONICA</strong></div>
+                    <div class="spec-row"><span>Calibración</span><strong>Incluida 1er año</strong></div>
+                  </ng-container>
+                </ng-container>
+              </ng-template>
+            </div>
+          </div>
+
+          <!-- Footer CTA — anclado al fondo con margin-top: auto -->
+          <div class="producto-footer">
+            <a routerLink="/contacto"
+              [queryParams]="{ categoria: prod.categoria?.nombre, producto: prod.nombre, productoId: prod.id }"
+              class="btn-cotizar-card">
+              Cotizar
+            </a>
+            <button 
+              type="button" 
+              class="btn-quick-spec" 
+              [class.active-spec]="estaTarjetaExpandida(prod.id)"
+              (click)="toggleFichaRapida(prod.id)"
+            >
+              {{ estaTarjetaExpandida(prod.id) ? 'Ocultar Ficha' : 'Ficha Técnica' }}
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+</div>

@@ -1,0 +1,61 @@
+version: '3.8'
+
+services:
+  # Servicio 1: Base de Datos Relacional PostgreSQL (Blindada)
+  database:
+    image: postgres:15-alpine
+    container_name: proyectogeo-db
+    restart: always
+    environment:
+      POSTGRES_USER: ${DB_USER:-geo_admin}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-geo_password_2026}
+      POSTGRES_DB: ${DB_NAME:-proyectogeo_db}
+    ports:
+      - "${DB_PORT_OUT:-5432}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      # Docker usa esto ÚNICAMENTE la primera vez para estructurar el motor
+      - ./back/src/main/resources/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+    networks:
+      - tektonica-network
+
+  # Servicio 2: Backend REST API (Spring Boot con el Escudo Protector)
+  backend:
+    build:
+      context: ./back
+      dockerfile: Dockerfile
+    container_name: tektonica-backend
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://database:5432/${DB_NAME:-proyectogeo_db}
+      - SPRING_DATASOURCE_USERNAME=${DB_USER:-geo_admin}
+      - SPRING_DATASOURCE_PASSWORD=${DB_PASSWORD:-geo_password_2026}
+      - SPRING_SQL_INIT_MODE=never # <-- ¡EL FIN DEL FANTASMA! No vuelve a borrar datos en los reinicios
+    depends_on:
+      - database
+    networks:
+      - tektonica-network
+
+  # Servicio 3: Frontend Web Corporativa (Angular + Nginx Server Pro)
+  frontend:
+    build:
+      context: ./front
+      dockerfile: Dockerfile
+    container_name: tektonica-frontend
+    restart: always
+    ports:
+      - "80:80" # Tu landing page y backoffice accesibles directo en http://localhost
+    depends_on:
+      - backend
+    networks:
+      - tektonica-network
+
+volumes:
+  postgres_data:
+    driver: local
+
+networks:
+  tektonica-network:
+    driver: bridge

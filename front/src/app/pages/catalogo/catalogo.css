@@ -1,0 +1,702 @@
+/* ============================================================================
+   ESTILOS DEL CATÁLOGO TÉCNICO INTERACTIVO - TEKTONICA WHITE & BLACK (APPLE PRO)
+   Rediseño: Simetría matemática, truncado controlado y estética premium.
+   ============================================================================ */
+
+/* ============================================================================
+   0. CONTENEDOR PRINCIPAL Y ENCABEZADO PREMIUM
+   ============================================================================ */
+.catalogo-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 60px 40px 80px;
+  background-color: #FFFFFF;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.catalogo-header {
+  text-align: center;
+  margin-bottom: 64px;
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.catalogo-header h2 {
+  font-size: 2.6rem;
+  color: #111111;
+  font-weight: 750;
+  letter-spacing: -1.2px;
+  margin-bottom: 14px;
+  line-height: 1.15;
+}
+
+.catalogo-header p {
+  color: #515154;
+  font-size: 1.15rem;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+/* ============================================================================
+   1. LAYOUT DE DOBLE COLUMNA (SIDEBAR + GRID)
+   ============================================================================ */
+.catalogo-layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+@media (max-width: 992px) {
+  .catalogo-layout {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .catalogo-container {
+    padding: 40px 20px 60px;
+  }
+}
+
+/* ============================================================================
+   2. MENÚ LATERAL (SIDEBAR EDITORIAL MINIMALISTA)
+   ============================================================================ */
+.catalogo-sidebar {
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  box-shadow: none;
+  border: none;
+  position: sticky;
+  top: 100px;
+}
+
+.catalogo-sidebar h3 {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #86868B;
+  margin-bottom: 20px;
+  border-bottom: 1px solid rgba(17, 17, 17, 0.08);
+  padding-bottom: 14px;
+  font-weight: 600;
+}
+
+.catalogo-sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.catalogo-sidebar li {
+  width: 100%;
+}
+
+.catalogo-sidebar button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px 10px 12px;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  color: #52525b;
+  font-size: 0.92rem;
+  font-weight: 400;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  border-left: 2px solid transparent;
+}
+
+.catalogo-sidebar button:hover {
+  background: rgba(17, 17, 17, 0.03);
+  color: #18181b;
+}
+
+.catalogo-sidebar li.active button {
+  background: rgba(17, 17, 17, 0.04);
+  color: #09090b;
+  font-weight: 600;
+  border-left: 2px solid #111111;
+}
+
+.catalogo-sidebar li.active button:hover {
+  color: #09090b;
+  background: rgba(17, 17, 17, 0.06);
+}
+
+/* Iconos de la barra lateral */
+.sidebar-icon {
+  color: #a1a1aa;
+  transition: color 0.25s ease;
+  flex-shrink: 0;
+}
+
+.catalogo-sidebar button:hover .sidebar-icon,
+.catalogo-sidebar li.active button .sidebar-icon {
+  color: #18181b;
+}
+
+/* ============================================================================
+   3. SECCIÓN PRINCIPAL DE PRODUCTOS
+   ============================================================================ */
+.catalogo-content {
+  min-height: 400px;
+}
+
+/* ============================================================================
+   4. GRILLA DE TARJETAS — SIMETRÍA MATEMÁTICA ESTRICTA
+   ============================================================================ */
+.productos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 28px;
+}
+
+/* ============================================================================
+   5. TARJETA DE PRODUCTO — ALTURA FIJA CON FLEXBOX
+   ============================================================================ */
+.producto-card {
+  background: #FFFFFF;
+  border-radius: 12px;
+  border: 1px solid #e5e5e7;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  position: relative;
+  min-height: 440px;
+  height: 100%;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.producto-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.06);
+  border-color: rgba(17, 17, 17, 0.15);
+}
+
+/* ============================================================================
+   6. BADGE DE CATEGORÍA — GLASSMORPHISM SUTIL
+   ============================================================================ */
+.producto-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: rgba(17, 17, 17, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #FFFFFF;
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 20px;
+  z-index: 10;
+  letter-spacing: 0.8px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* ============================================================================
+   7. CONTENEDOR DE IMAGEN — ALTURA FIJA 240px CON OBJECT-FIT
+   ============================================================================ */
+.producto-imagen-box {
+  width: 100%;
+  height: 240px;
+  overflow: hidden;
+  background: linear-gradient(145deg, #FAFAFA 0%, #F0F0F2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border-bottom: 1px solid rgba(17, 17, 17, 0.04);
+  flex-shrink: 0;
+}
+
+.producto-imagen {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.producto-card:hover .producto-imagen {
+  transform: scale(1.04);
+}
+
+/* Placeholder cuando no hay imagen */
+.placeholder-imagen {
+  text-align: center;
+  color: #86868B;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.placeholder-imagen span {
+  font-size: 2.4rem;
+  display: block;
+  opacity: 0.6;
+}
+
+.placeholder-imagen p {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin: 0;
+  color: #a1a1aa;
+}
+
+/* ============================================================================
+   8. INFORMACIÓN DEL PRODUCTO — FLEX-GROW PARA EMPUJAR FOOTER
+   ============================================================================ */
+.producto-info {
+  padding: 22px 24px 0;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.producto-marca {
+  display: block;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #86868B;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.producto-nombre {
+  font-size: 1.2rem;
+  color: #111111;
+  margin-bottom: 4px;
+  font-weight: 650;
+  line-height: 1.3;
+  letter-spacing: -0.3px;
+}
+
+.producto-modelo {
+  font-size: 0.82rem;
+  color: #86868B;
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+/* ============================================================================
+   9. TRUNCADO CONTROLADO DE DESCRIPCIÓN — MÁXIMO 2 LÍNEAS
+   ============================================================================ */
+.producto-descripcion {
+  font-size: 0.88rem;
+  color: #515154;
+  line-height: 1.55;
+  font-weight: 400;
+  /* Truncado estricto a 2 líneas para simetría vertical */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 0;
+}
+
+/* ============================================================================
+   10. PIE DE TARJETA — ANCLADO AL FONDO CON MARGIN-TOP AUTO
+   ============================================================================ */
+.producto-footer {
+  padding: 16px 24px 22px;
+  margin-top: auto;
+}
+
+.btn-cotizar-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  text-align: center;
+  padding: 11px;
+  background-color: transparent;
+  color: #111111;
+  border: 1.5px solid #111111;
+  border-radius: 28px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.85rem;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  letter-spacing: -0.1px;
+}
+
+.btn-cotizar-card:hover {
+  background-color: #111111;
+  color: #FFFFFF;
+  box-shadow: 0 6px 16px rgba(17, 17, 17, 0.18);
+  transform: translateY(-1px);
+}
+
+/* ============================================================================
+   11. ESTADOS DE CARGA, VACÍO Y ERROR
+   ============================================================================ */
+.loading-products {
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.spinner {
+  width: 44px;
+  height: 44px;
+  border: 3px solid rgba(17, 17, 17, 0.08);
+  border-top: 3px solid #111111;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto 24px auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-products p {
+  color: #86868B;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.no-products {
+  text-align: center;
+  padding: 80px 40px;
+  background: #F5F5F7;
+  border-radius: 16px;
+  border: 1px solid rgba(17, 17, 17, 0.05);
+}
+
+.no-products-icon-svg {
+  color: #d4d4d8;
+  margin-bottom: 16px;
+  display: inline-block;
+}
+
+.no-products h3 {
+  font-size: 1.3rem;
+  color: #111111;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.no-products p {
+  color: #86868B;
+  max-width: 450px;
+  margin: 0 auto;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+/* ============================================================================
+   12. ERRORES Y REINTENTOS
+   ============================================================================ */
+.error-container {
+  text-align: center;
+  padding: 60px 40px;
+  background: #FAFAFA;
+  border-radius: 16px;
+  border: 1px solid rgba(17, 17, 17, 0.08);
+  max-width: 600px;
+  margin: 40px auto;
+}
+
+.error-container h3 {
+  color: #111111;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.error-container p {
+  color: #515154;
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+
+.btn-retry {
+  padding: 11px 28px;
+  background-color: #111111;
+  color: white;
+  border: none;
+  border-radius: 28px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  font-size: 0.88rem;
+}
+
+.btn-retry:hover {
+  background-color: #2D2D30;
+  box-shadow: 0 4px 12px rgba(17, 17, 17, 0.15);
+}
+
+/* ============================================================================
+   13. ANIMACIÓN DE ENTRADA PROGRESIVA
+   ============================================================================ */
+.producto-card {
+  animation: cardSlideIn 0.4s ease-out both;
+}
+
+@keyframes cardSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================================================
+   14. MEDIA QUERIES — RESPONSIVIDAD
+   ============================================================================ */
+@media (max-width: 768px) {
+  .catalogo-header h2 {
+    font-size: 1.8rem;
+  }
+  .catalogo-header p {
+    font-size: 1rem;
+  }
+  .productos-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .producto-card {
+    min-height: auto;
+  }
+  .producto-imagen-box {
+    height: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .catalogo-container {
+    padding: 32px 16px 48px;
+  }
+  .catalogo-header h2 {
+    font-size: 1.5rem;
+    letter-spacing: -0.5px;
+  }
+  .producto-info {
+    padding: 18px 18px 0;
+  }
+  .producto-footer {
+    padding: 14px 18px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+/* ============================================================================
+   NUEVOS ESTILOS: BUSCADOR EN TIEMPO REAL Y FICHA TÉCNICA (ESTILO APPLE / GEOCOM)
+   ============================================================================ */
+
+/* Buscador Inteligente en Cabecera */
+.buscador-seccion {
+  margin-top: 32px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.buscador-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 580px;
+  display: flex;
+  align-items: center;
+}
+
+.buscador-icon {
+  position: absolute;
+  left: 18px;
+  color: #86868B;
+  pointer-events: none;
+  transition: color 0.25s ease;
+}
+
+.input-buscador {
+  width: 100%;
+  height: 48px;
+  padding: 0 48px 0 52px;
+  font-size: 0.95rem;
+  border-radius: 24px;
+  border: 1px solid #e5e5e7;
+  background-color: #F5F5F7;
+  color: #111111;
+  font-family: inherit;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
+}
+
+.input-buscador:focus {
+  outline: none;
+  background-color: #FFFFFF;
+  border-color: #111111;
+  box-shadow: 0 0 0 4px rgba(17, 17, 17, 0.05);
+}
+
+.input-buscador:focus + .buscador-icon {
+  color: #111111;
+}
+
+.btn-clear-search {
+  position: absolute;
+  right: 16px;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: #86868B;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease;
+}
+
+.btn-clear-search:hover {
+  color: #111111;
+}
+
+.buscador-resultados {
+  font-size: 0.8rem;
+  color: #86868B;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+/* Modificación de Footer de Tarjeta para contener dos botones en paralelo */
+.producto-footer {
+  padding: 16px 24px 22px;
+  margin-top: auto;
+  display: flex;
+  gap: 10px;
+}
+
+.btn-cotizar-card,
+.btn-quick-spec {
+  flex: 1;
+  height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  letter-spacing: -0.1px;
+}
+
+.btn-cotizar-card {
+  background-color: #111111;
+  color: #FFFFFF;
+  border: 1px solid #111111;
+}
+
+.btn-cotizar-card:hover {
+  background-color: #2D2D30;
+  border-color: #2D2D30;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(17, 17, 17, 0.15);
+}
+
+.btn-quick-spec {
+  background-color: #FFFFFF;
+  color: #515154;
+  border: 1px solid #e5e5e7;
+}
+
+.btn-quick-spec:hover {
+  border-color: #86868B;
+  color: #111111;
+  background-color: #F5F5F7;
+}
+
+.btn-quick-spec.active-spec {
+  background-color: #F5F5F7;
+  color: #111111;
+  border-color: #111111;
+}
+
+/* Ficha de Especificaciones Expandible */
+.ficha-especificaciones {
+  padding: 0 24px;
+  animation: slideDownSpec 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideDownSpec {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    max-height: 250px;
+  }
+}
+
+.spec-divider {
+  width: 100%;
+  height: 1px;
+  background-color: #e5e5e7;
+  margin: 14px 0;
+}
+
+.spec-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-bottom: 8px;
+}
+
+.spec-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+
+.spec-row span {
+  color: #86868B;
+  font-weight: 400;
+}
+
+.spec-row strong {
+  color: #111111;
+  font-weight: 600;
+}
+
+/* Adaptación responsiva de botones */
+@media (max-width: 480px) {
+  .producto-footer {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .btn-cotizar-card,
+  .btn-quick-spec {
+    width: 100%;
+  }
+}

@@ -1,0 +1,70 @@
+<div class="contacto-container">
+  <div class="form-card">
+    <h2>Solicitud de Cotización Técnica</h2>
+    <p>Complete el siguiente formulario y un especialista de Tektonica se pondrá en contacto en menos de 24 horas hábiles.</p>
+
+    <!-- Éxito -->
+    <div *ngIf="enviado" class="success-message">
+      <h3>¡Solicitud Registrada con Éxito! 📡</h3>
+      <p>Nos pondremos en contacto contigo a la brevedad para brindarte la mejor asesoría técnica adaptada a tu proyecto.</p>
+      <button (click)="enviado = false" class="btn btn-primary">Enviar Otra Consulta</button>
+    </div>
+
+    <!-- Formulario -->
+    <form *ngIf="!enviado" #contactoForm="ngForm" (ngSubmit)="enviarFormulario(contactoForm)">
+      
+      <div class="form-group">
+        <label for="nombre">Nombre Completo *</label>
+        <input type="text" id="nombre" name="nombre" [(ngModel)]="nombreCompleto" required #nombre="ngModel" placeholder="Ej. Ing. Juan Pérez">
+        <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)" class="validation-error">
+          El nombre completo es requerido.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="empresa">Empresa</label>
+        <input type="text" id="empresa" name="empresa" [(ngModel)]="empresa" placeholder="Ej. Minera del Norte S.A.C.">
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="correo">Correo Electrónico *</label>
+          <input type="email" id="correo" name="correo" [(ngModel)]="correo" required email #emailField="ngModel" placeholder="correo@empresa.com">
+          <div *ngIf="emailField.invalid && (emailField.dirty || emailField.touched)" class="validation-error">
+            Ingrese un correo electrónico corporativo válido.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="telefono">Teléfono / WhatsApp *</label>
+          <input type="text" id="telefono" name="telefono" [(ngModel)]="telefono" required #tel="ngModel" placeholder="Ej. +51 987 654 321">
+          <div *ngIf="tel.invalid && (tel.dirty || tel.touched)" class="validation-error">
+            El número telefónico es obligatorio para asesoría directa.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="categoria">Línea de Interés Sugerida</label>
+        <select id="categoria" name="categoria" [(ngModel)]="categoriaInteres">
+          <option value="">Seleccione una división tecnológica (Opcional)</option>
+          <option value="GNSS">GNSS</option>
+          <option value="Óptica">Óptica</option>
+          <option value="Escáner Láser">Escáner Láser</option>
+          <option value="Drones">Drones</option>
+          <option value="Software">Software</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="mensaje">Especificaciones / Detalles del Proyecto *</label>
+        <textarea id="mensaje" name="mensaje" [(ngModel)]="mensaje" required minlength="10" #msg="ngModel" rows="5" placeholder="Indique los modelos de su interés, requerimiento de precisión o especificaciones necesarias para sus proyectos..."></textarea>
+        <div *ngIf="msg.invalid && (msg.dirty || msg.touched)" class="validation-error">
+          El mensaje debe detallar su solicitud (mínimo 10 caracteres).
+        </div>
+      </div>
+
+      <button type="submit" [disabled]="contactoForm.invalid" class="btn btn-submit">Enviar Solicitud Técnica</button>
+    </form>
+  </div>
+</div>

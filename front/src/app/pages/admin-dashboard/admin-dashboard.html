@@ -1,0 +1,554 @@
+<div class="admin-container">
+
+  <!-- Cabecera del Panel Administrativo -->
+  <header class="admin-header">
+    <div class="admin-header-left">
+      <h1 class="admin-title">Consola de Gestión</h1>
+      <p class="admin-subtitle">Panel de control del catálogo técnico de equipos geoespaciales y contenidos de TEKTONICA.</p>
+    </div>
+    <div class="admin-header-actions">
+      <!-- Botón de añadir contextual según la pestaña activa -->
+      <button *ngIf="pestanaActiva === 'equipos'" class="btn-add-equipo" (click)="abrirModalCrearEquipo()">
+        <!-- Icono SVG: Plus -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="12" y1="5" x2="12" y2="19"/>
+          <line x1="5" y1="12" x2="19" y2="12"/>
+        </svg>
+        <span>Añadir Nuevo Equipo</span>
+      </button>
+      
+      <button *ngIf="pestanaActiva === 'noticias'" class="btn-add-equipo" (click)="abrirModalCrearNoticia()">
+        <!-- Icono SVG: Plus -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="12" y1="5" x2="12" y2="19"/>
+          <line x1="5" y1="12" x2="19" y2="12"/>
+        </svg>
+        <span>Nueva Publicación</span>
+      </button>
+
+      <button class="btn-logout" (click)="cerrarSesion()">
+        <!-- Icono SVG: LogOut -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+          <polyline points="16 17 21 12 16 7"/>
+          <line x1="21" y1="12" x2="9" y2="12"/>
+        </svg>
+        <span>Cerrar Sesión</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Barra de Pestañas Lógicas (Tab Switcher) -->
+  <div class="admin-tabs">
+    <button class="tab-btn" [class.active]="pestanaActiva === 'equipos'" (click)="cambiarPestana('equipos')">
+      <!-- Icono SVG: Compass -->
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/>
+        <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+      </svg>
+      <span>Equipos del Catálogo</span>
+    </button>
+    <button class="tab-btn" [class.active]="pestanaActiva === 'noticias'" (click)="cambiarPestana('noticias')">
+      <!-- Icono SVG: FileText -->
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+        <polyline points="14 2 14 8 20 8"/>
+        <line x1="16" y1="13" x2="8" y2="13"/>
+        <line x1="16" y1="17" x2="8" y2="17"/>
+        <polyline points="10 9 9 9 8 9"/>
+      </svg>
+      <span>Noticias & Artículos</span>
+    </button>
+  </div>
+
+  <!-- PESTAÑA: EQUIPOS DEL CATÁLOGO -->
+  <div *ngIf="pestanaActiva === 'equipos'">
+    <!-- Barra de Estadísticas Rápidas -->
+    <div class="admin-stats-bar">
+      <div class="stat-card">
+        <span class="stat-value">{{ productos.length }}</span>
+        <span class="stat-label">Total Equipos</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-value">{{ categorias.length }}</span>
+        <span class="stat-label">Categorías</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-value stat-active">{{ productosActivos }}</span>
+        <span class="stat-label">Activos</span>
+      </div>
+    </div>
+
+    <!-- Estado de Carga -->
+    <div *ngIf="cargando" class="admin-loading-state">
+      <div class="loading-spinner-ring"></div>
+      <p>Cargando inventario técnico...</p>
+    </div>
+
+    <!-- Estado de Error -->
+    <div *ngIf="errorCarga && !cargando" class="admin-error-state">
+      <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/>
+        <line x1="12" y1="8" x2="12" y2="12"/>
+        <line x1="12" y1="16" x2="12.01" y2="16"/>
+      </svg>
+      <p>Error al conectar con el servidor. Verifique que el backend de TEKTONICA esté en ejecución.</p>
+      <button class="btn-retry" (click)="cargarInventario()">Reintentar Conexión</button>
+    </div>
+
+    <!-- Tabla de Datos del Inventario Técnico -->
+    <div *ngIf="!cargando && !errorCarga" class="admin-table-wrapper">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th class="th-id">ID</th>
+            <th class="th-image">Imagen</th>
+            <th class="th-nombre">Nombre</th>
+            <th class="th-modelo">Modelo</th>
+            <th class="th-categoria">Categoría</th>
+            <th class="th-estado">Estado</th>
+            <th class="th-acciones">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let producto of productos; trackBy: trackByProductoId" class="table-row">
+            <!-- ID -->
+            <td class="td-id">
+              <span class="id-badge">{{ producto.id }}</span>
+            </td>
+
+            <!-- Isotipo / Imagen -->
+            <td class="td-image">
+              <div class="product-thumbnail" *ngIf="producto.urlImagen; else placeholderImg">
+                <img [src]="producto.urlImagen" [alt]="producto.nombre" />
+              </div>
+              <ng-template #placeholderImg>
+                <div class="product-thumbnail-placeholder">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                    <circle cx="8.5" cy="8.5" r="1.5"/>
+                    <polyline points="21 15 16 10 5 21"/>
+                  </svg>
+                </div>
+              </ng-template>
+            </td>
+
+            <!-- Nombre -->
+            <td class="td-nombre">
+              <span class="product-name">{{ producto.nombre }}</span>
+              <span class="product-brand">{{ producto.marca }}</span>
+            </td>
+
+            <!-- Modelo -->
+            <td class="td-modelo">{{ producto.modelo }}</td>
+
+            <!-- Categoría -->
+            <td class="td-categoria">
+              <span class="category-tag">{{ producto.categoria?.nombre || 'Sin categoría' }}</span>
+            </td>
+
+            <!-- Estado Operacional -->
+            <td class="td-estado">
+              <span
+                class="status-badge"
+                [class.status-activo]="producto.activo"
+                [class.status-inactivo]="!producto.activo"
+              >
+                {{ producto.activo ? 'Activo' : 'Inactivo' }}
+              </span>
+            </td>
+
+            <!-- Acciones -->
+            <td class="td-acciones">
+              <div class="acciones-wrapper">
+                <button class="btn-action btn-edit" (click)="abrirModalEditarEquipo(producto)" title="Editar equipo">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                  </svg>
+                  <span>Editar</span>
+                </button>
+                <button
+                  class="btn-action btn-toggle-status"
+                  [class.btn-deactivate]="producto.activo"
+                  [class.btn-activate]="!producto.activo"
+                  (click)="toggleEstadoEquipo(producto)"
+                  [title]="producto.activo ? 'Desactivar equipo' : 'Activar equipo'"
+                >
+                  <svg *ngIf="producto.activo" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="15" y1="9" x2="9" y2="15"/>
+                    <line x1="9" y1="9" x2="15" y2="15"/>
+                  </svg>
+                  <svg *ngIf="!producto.activo" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                  <span>{{ producto.activo ? 'Desactivar' : 'Activar' }}</span>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Empty State de la Tabla -->
+      <div *ngIf="productos.length === 0" class="admin-empty-state">
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+        </svg>
+        <p class="empty-title">Sin equipos registrados</p>
+        <p class="empty-description">El inventario técnico se encuentra vacío. Utilice el botón superior para añadir el primer equipo al catálogo.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PESTAÑA: NOTICIAS & ARTÍCULOS -->
+  <div *ngIf="pestanaActiva === 'noticias'">
+    <!-- Estado de Carga -->
+    <div *ngIf="cargandoNoticias" class="admin-loading-state">
+      <div class="loading-spinner-ring"></div>
+      <p>Cargando panel de novedades...</p>
+    </div>
+
+    <!-- Estado de Error -->
+    <div *ngIf="errorNoticias && !cargandoNoticias" class="admin-error-state">
+      <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/>
+        <line x1="12" y1="8" x2="12" y2="12"/>
+        <line x1="12" y1="16" x2="12.01" y2="16"/>
+      </svg>
+      <p>Error al conectar con el módulo de noticias. Verifique su base de datos.</p>
+      <button class="btn-retry" (click)="cargarNoticias()">Reintentar Conexión</button>
+    </div>
+
+    <!-- Tabla Simplificada de Noticias -->
+    <div *ngIf="!cargandoNoticias && !errorNoticias" class="admin-table-wrapper">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th class="th-id">ID</th>
+            <th class="th-image">Imagen</th>
+            <th class="th-nombre">Título</th>
+            <th class="th-categoria">Categoría</th>
+            <th class="th-fecha">Fecha de Publicación</th>
+            <th class="th-acciones">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let noticia of noticias; trackBy: trackByNoticiaId" class="table-row">
+            <!-- ID -->
+            <td class="td-id">
+              <span class="id-badge">{{ noticia.id }}</span>
+            </td>
+
+            <!-- Portada de Noticia -->
+            <td class="td-image">
+              <div class="product-thumbnail" *ngIf="noticia.urlImagen; else placeholderNewsImg">
+                <img [src]="noticia.urlImagen" [alt]="noticia.titulo" />
+              </div>
+              <ng-template #placeholderNewsImg>
+                <div class="product-thumbnail-placeholder">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                    <line x1="8" y1="21" x2="16" y2="21"/>
+                    <line x1="12" y1="17" x2="12" y2="21"/>
+                  </svg>
+                </div>
+              </ng-template>
+            </td>
+
+            <!-- Título & Resumen -->
+            <td class="td-nombre">
+              <span class="product-name">{{ noticia.titulo }}</span>
+              <span class="product-brand">{{ noticia.contenido | slice:0:80 }}...</span>
+            </td>
+
+            <!-- Categoría -->
+            <td class="td-categoria">
+              <span class="category-tag">{{ noticia.categoria }}</span>
+            </td>
+
+            <!-- Fecha -->
+            <td class="td-modelo">
+              {{ noticia.fecha ? (noticia.fecha | date:'dd/MM/yyyy HH:mm') : 'Recién publicado' }}
+            </td>
+
+            <!-- Acciones -->
+            <td class="td-acciones">
+              <div class="acciones-wrapper">
+                <button class="btn-action btn-edit" (click)="abrirModalEditarNoticia(noticia)" title="Editar publicación">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                  </svg>
+                  <span>Editar</span>
+                </button>
+                <button class="btn-action btn-deactivate" (click)="eliminarNoticia(noticia)" title="Eliminar publicación">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="3 6 5 6 21 6"/>
+                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                  </svg>
+                  <span>Eliminar</span>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Empty State de Noticias -->
+      <div *ngIf="noticias.length === 0" class="admin-empty-state">
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+        </svg>
+        <p class="empty-title">Sin publicaciones registradas</p>
+        <p class="empty-description">El panel de novedades se encuentra vacío. Utilice el botón superior para crear el primer artículo técnico.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: CREAR / EDITAR EQUIPO -->
+  <div *ngIf="mostrarModalEquipo" class="admin-modal-overlay">
+    <div class="admin-modal-card">
+      <div class="modal-header">
+        <h2>{{ modoEdicionEquipo ? 'Editar Equipo Técnico' : 'Añadir Nuevo Equipo al Catálogo' }}</h2>
+        <button class="btn-close-modal" (click)="cerrarModalEquipo()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+      
+      <form (ngSubmit)="onSubmitEquipo()" #equipoForm="ngForm">
+        <div class="form-grid">
+          <!-- Fila 1: Nombre (Ancho Completo) -->
+          <div class="form-group full-width">
+            <label class="form-label">Nombre del Equipo</label>
+            <input 
+              type="text" 
+              [(ngModel)]="equipoModelo.nombre" 
+              name="nombre" 
+              class="form-input" 
+              placeholder="Ej: Receptor GNSS GeoMax Zenith60" 
+              required
+            />
+          </div>
+
+          <!-- Fila 2: Marca (Izquierda) | Modelo (Derecha) (50/50) -->
+          <div class="form-group">
+            <label class="form-label">Marca</label>
+            <input 
+              type="text" 
+              [(ngModel)]="equipoModelo.marca" 
+              name="marca" 
+              class="form-input" 
+              placeholder="Ej: GeoMax" 
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Modelo</label>
+            <input 
+              type="text" 
+              [(ngModel)]="equipoModelo.modelo" 
+              name="modelo" 
+              class="form-input" 
+              placeholder="Ej: Zenith60 LTE" 
+              required
+            />
+          </div>
+
+          <!-- Fila 3: Categoría (Izquierda) | Estado Operacional (Derecha) (50/50) -->
+          <div class="form-group">
+            <label class="form-label">Categoría</label>
+            <select 
+              [(ngModel)]="equipoModelo.categoriaId" 
+              name="categoriaId" 
+              class="form-input select-input" 
+              required
+            >
+              <option value="" disabled selected>Seleccione categoría...</option>
+              <option *ngFor="let cat of categorias" [value]="cat.id">{{ cat.nombre }}</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Estado Operacional</label>
+            <select 
+              [(ngModel)]="equipoModelo.activo" 
+              name="activo" 
+              class="form-input select-input" 
+              required
+            >
+              <option [ngValue]="true">Activo (Visible)</option>
+              <option [ngValue]="false">Inactivo (Oculto)</option>
+            </select>
+          </div>
+
+          <!-- Fila 4: URL de la Imagen (Ancho Completo) -->
+          <div class="form-group full-width">
+            <label class="form-label">URL de la Imagen del Equipo</label>
+            <input 
+              type="text" 
+              [(ngModel)]="equipoModelo.urlImagen" 
+              name="urlImagen" 
+              class="form-input" 
+              placeholder="Ej: assets/images/products/gnss-zenith60.jpg"
+            />
+          </div>
+
+          <!-- Fila 5: Especificaciones Rápidas (Ancho Completo) -->
+          <div class="form-group full-width">
+            <label class="form-label">Especificaciones Rápidas de Ficha Técnica (Opcional)</label>
+            <input 
+              type="text" 
+              [(ngModel)]="equipoModelo.especificaciones" 
+              name="specifications" 
+              class="form-input" 
+              placeholder="Formato: Clave:Valor, Clave:Valor (Ej: Precisión RTK:±8mm, Canales GNSS:555 canales, Protección:IP68)"
+            />
+          </div>
+
+          <!-- Fila 6: Descripción Técnica (Ancho Completo) -->
+          <div class="form-group full-width">
+            <label class="form-label">Descripción Técnica e Instrumental</label>
+            <textarea 
+              [(ngModel)]="equipoModelo.descripcionTecnica" 
+              name="descripcionTecnica" 
+              class="form-input textarea-input" 
+              rows="4" 
+              placeholder="Describa a detalle las características, sensores, puertos y capacidades de campo..." 
+              required
+            ></textarea>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn-cancel" (click)="cerrarModalEquipo()">Cancelar</button>
+          <button type="submit" class="btn-submit" [disabled]="!equipoForm.form.valid || guardandoEquipo">
+            <span *ngIf="!guardandoEquipo">{{ modoEdicionEquipo ? 'Guardar Cambios' : 'Añadir al Catálogo' }}</span>
+            <span *ngIf="guardandoEquipo" class="btn-spinner">Guardando...</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: CREAR / EDITAR PUBLICACIÓN (NOTICIA) -->
+  <div *ngIf="mostrarModalNoticia" class="admin-modal-overlay">
+    <div class="admin-modal-card">
+      <div class="modal-header">
+        <h2>{{ modoEdicionNoticia ? 'Editar Publicación / Artículo Técnico' : 'Nueva Publicación / Artículo Técnico' }}</h2>
+        <button class="btn-close-modal" (click)="cerrarModalNoticia()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+
+      <form (ngSubmit)="onSubmitNoticia()" #noticiaForm="ngForm">
+        <div class="form-grid">
+          <!-- Fila 1: Título (Ancho Completo) -->
+          <div class="form-group full-width">
+            <label class="form-label">Título del Artículo</label>
+            <input 
+              type="text" 
+              [(ngModel)]="noticiaModelo.titulo" 
+              name="titulo" 
+              class="form-input" 
+              placeholder="Ej: Revolución en Fotogrametría Terrestre con LiDAR Móvil" 
+              required
+            />
+          </div>
+
+          <!-- Fila 2: Categoría (Izquierda) | URL Imagen de Portada (Derecha) (50/50) -->
+          <div class="form-group">
+            <label class="form-label">Área / Categoría del Blog</label>
+            <select 
+              [(ngModel)]="noticiaModelo.categoria" 
+              name="categoria" 
+              class="form-input select-input" 
+              required
+            >
+              <option value="" disabled selected>Seleccione área...</option>
+              <option *ngFor="let cat of categorias" [value]="cat.nombre">{{ cat.nombre }}</option>
+              <option value="General">General / Corporativo</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">URL de la Imagen de Portada</label>
+            <input 
+              type="text" 
+              [(ngModel)]="noticiaModelo.urlImagen" 
+              name="urlImagen" 
+              class="form-input" 
+              placeholder="Ej: assets/images/news/news-cover.jpg"
+            />
+          </div>
+
+          <!-- Fila 3: Subtítulo Secundario (Ancho Completo) -->
+          <div class="form-group full-width">
+            <label class="form-label">Subtítulo de Quiebre Editorial (Opcional)</label>
+            <input 
+              type="text" 
+              [(ngModel)]="noticiaModelo.subtituloSecundario" 
+              name="subtituloSecundario" 
+              class="form-input" 
+              placeholder="Ej: Análisis de precisión y rendimiento en entornos mineros"
+            />
+          </div>
+
+          <!-- Fila 4: Video Embebido (Izquierda) | Datos Clave (Derecha) (50/50) -->
+          <div class="form-group">
+            <label class="form-label">URL de Video Técnico Embebido (YouTube Embed)</label>
+            <input 
+              type="text" 
+              [(ngModel)]="noticiaModelo.urlVideoEmbebido" 
+              name="urlVideoEmbebido" 
+              class="form-input" 
+              placeholder="Ej: https://www.youtube.com/embed/ID_VIDEO"
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Especificaciones Rápidas (Ficha Técnica)</label>
+            <input 
+              type="text" 
+              [(ngModel)]="noticiaModelo.datosClave" 
+              name="datosClave" 
+              class="form-input" 
+              placeholder="Formato: Clave:Valor, Clave:Valor (Ej: Precisión:±2mm, Protección:IP68)"
+            />
+          </div>
+
+          <!-- Fila 5: Contenido (Ancho Completo) -->
+          <div class="form-group full-width">
+            <label class="form-label">Contenido y Redacción del Artículo</label>
+            <textarea 
+              [(ngModel)]="noticiaModelo.contenido" 
+              name="contenido" 
+              class="form-input textarea-input" 
+              rows="6" 
+              placeholder="Redacte el cuerpo informativo o informe técnico a publicar en TEKTONICA..." 
+              required
+            ></textarea>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn-cancel" (click)="cerrarModalNoticia()">Cancelar</button>
+          <button type="submit" class="btn-submit" [disabled]="!noticiaForm.form.valid || guardandoNoticia">
+            <span *ngIf="!guardandoNoticia">{{ modoEdicionNoticia ? 'Guardar Cambios' : 'Publicar Artículo' }}</span>
+            <span *ngIf="guardandoNoticia" class="btn-spinner">{{ modoEdicionNoticia ? 'Guardando...' : 'Publicando...' }}</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</div>

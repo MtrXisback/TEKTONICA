@@ -1,0 +1,877 @@
+/* ==========================================================================
+   CONSOLA DE GESTIÓN ADMINISTRATIVA - TEKTONICA
+   Estilos de Diseño Minimalista Premium (White & Black / Apple Pro inspired)
+   ========================================================================== */
+
+/* Contenedor Principal */
+.admin-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+  background-color: #ffffff;
+  color: #09090b;
+  min-height: 100vh;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Cabecera del Panel */
+.admin-header {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #e4e4e7;
+  margin-bottom: 2.5rem;
+}
+
+@media (min-width: 768px) {
+  .admin-header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+}
+
+.admin-title {
+  font-size: 2.25rem;
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  color: #09090b;
+  margin: 0 0 0.5rem 0;
+}
+
+.admin-subtitle {
+  font-size: 0.95rem;
+  color: #71717a;
+  margin: 0;
+  max-width: 600px;
+  line-height: 1.5;
+}
+
+/* Acciones de Cabecera */
+.admin-header-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.btn-add-equipo,
+.btn-logout {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  height: 2.75rem;
+  padding: 0 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: 6px;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.btn-add-equipo {
+  background-color: #09090b;
+  color: #ffffff;
+  border: 1px solid #09090b;
+}
+
+.btn-add-equipo:hover {
+  background-color: #27272a;
+  border-color: #27272a;
+  transform: translateY(-1px);
+}
+
+.btn-logout {
+  background-color: #ffffff;
+  color: #71717a;
+  border: 1px solid #e4e4e7;
+}
+
+.btn-logout:hover {
+  background-color: #f4f4f5;
+  color: #09090b;
+  border-color: #d4d4d8;
+}
+
+/* Barra de Estadísticas Rápidas */
+.admin-stats-bar {
+  display: grid;
+  grid-template-columns: 1fr;
+  /* FIX: Estaba mal escrito (cols) */
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+@media (min-width: 640px) {
+  .admin-stats-bar {
+    grid-template-columns: repeat(3, 1fr);
+    /* FIX: Estaba mal escrito (cols) */
+  }
+}
+
+.stat-card {
+  padding: 1.5rem;
+  background-color: #ffffff;
+  border: 1px solid #e4e4e7;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  transition: border-color 0.2s ease;
+}
+
+.stat-card:hover {
+  border-color: #a1a1aa;
+}
+
+.stat-value {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #09090b;
+  letter-spacing: -0.02em;
+}
+
+.stat-value.stat-active {
+  color: #09090b;
+  position: relative;
+  display: inline-block;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #71717a;
+}
+
+/* Estados de Carga, Error y Vacío */
+.admin-loading-state,
+.admin-error-state,
+.admin-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 5rem 2rem;
+  text-align: center;
+  border: 1px dashed #e4e4e7;
+  border-radius: 8px;
+  background-color: #fafafa;
+}
+
+.loading-spinner-ring {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border: 3px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 3px solid #09090b;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.admin-loading-state p {
+  font-size: 0.95rem;
+  color: #71717a;
+  margin: 0;
+}
+
+.admin-error-state svg {
+  color: #ef4444;
+  margin-bottom: 1rem;
+}
+
+.admin-error-state p {
+  font-size: 0.95rem;
+  color: #71717a;
+  max-width: 400px;
+  margin: 0 0 1.5rem 0;
+  line-height: 1.5;
+}
+
+.btn-retry {
+  background-color: #ffffff;
+  color: #09090b;
+  border: 1px solid #09090b;
+  padding: 0.5rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-retry:hover {
+  background-color: #09090b;
+  color: #ffffff;
+}
+
+.admin-empty-state svg {
+  color: #a1a1aa;
+  margin-bottom: 1rem;
+}
+
+.empty-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #09090b;
+  margin: 0 0 0.5rem 0;
+}
+
+.empty-description {
+  font-size: 0.875rem;
+  color: #71717a;
+  max-width: 400px;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Contenedor y Tabla de Datos */
+.admin-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  /* Evita que rompa el diseño */
+  -webkit-overflow-scrolling: touch;
+  /* Scroll suave en móviles */
+  margin-bottom: 1rem;
+  border: 1px solid #e4e4e7;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.02);
+}
+
+.admin-table {
+  width: 100%;
+  min-width: 800px;
+  /* Obliga a la tabla a tener un ancho mínimo para no aplastar columnas */
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.875rem;
+  table-layout: fixed;
+  /* Fuerza a que las columnas se respeten */
+}
+
+.admin-table th {
+  background-color: #fafafa;
+  font-weight: 600;
+  color: #71717a;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #e4e4e7;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+}
+
+.admin-table td {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #e4e4e7;
+  vertical-align: middle;
+  color: #09090b;
+  white-space: nowrap;
+  /* Trunca textos largos automáticamente */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Evitar truncar celdas con elementos interactivos, badges o miniaturas */
+.td-image,
+.td-acciones,
+.td-estado {
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+}
+
+.table-row {
+  transition: background-color 0.15s ease;
+}
+
+.table-row:hover {
+  background-color: #fafafa;
+}
+
+/* Columnas con Identidad (Ajustes de anchos fijos y proporcionales) */
+.th-id,
+.td-id {
+  width: 60px !important;
+}
+
+.th-image,
+.td-image {
+  width: 80px !important;
+}
+
+.th-nombre,
+.td-nombre {
+  width: 250px !important;
+}
+
+.th-categoria,
+.td-categoria {
+  width: 120px !important;
+}
+
+.th-fecha,
+.td-fecha {
+  width: 150px !important;
+}
+
+.th-acciones,
+.td-acciones {
+  width: 180px !important;
+}
+
+/* Ajuste adicional para la columna Modelo en la tabla de equipos */
+.th-modelo,
+.td-modelo {
+  width: 120px !important;
+}
+
+/* Ajuste adicional para la columna Estado en la tabla de equipos */
+.th-estado,
+.td-estado {
+  width: 100px !important;
+}
+
+.id-badge {
+  display: inline-block;
+  font-family: monospace;
+  font-size: 0.75rem;
+  color: #71717a;
+  background-color: #f4f4f5;
+  padding: 0.125rem 0.375rem;
+  border-radius: 4px;
+}
+
+.product-thumbnail {
+  width: 44px;
+  height: 44px;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid #e4e4e7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+}
+
+.product-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-thumbnail-placeholder {
+  width: 44px;
+  height: 44px;
+  border-radius: 6px;
+  border: 1px solid #e4e4e7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f4f4f5;
+  color: #a1a1aa;
+}
+
+.product-name {
+  display: block;
+  font-weight: 700;
+  color: #09090b;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.product-brand {
+  display: block;
+  font-size: 0.75rem;
+  color: #71717a;
+  margin-top: 0.125rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.td-modelo {
+  font-family: monospace;
+  font-size: 0.8rem;
+  color: #27272a;
+}
+
+.category-tag {
+  display: inline-block;
+  background-color: #ffffff;
+  border: 1px solid #e4e4e7;
+  color: #27272a;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.625rem;
+  border-radius: 12px;
+}
+
+/* Badges de Estado */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.625rem;
+  border-radius: 50px;
+}
+
+.status-badge::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.status-activo {
+  background-color: #f0fdf4;
+  color: #166534;
+  border: 1px solid #bbf7d0;
+}
+
+.status-activo::before {
+  background-color: #15803d;
+}
+
+.status-inactivo {
+  background-color: #fafafa;
+  color: #71717a;
+  border: 1px solid #e4e4e7;
+}
+
+.status-inactivo::before {
+  background-color: #71717a;
+}
+
+/* Botones de Acción de Fila */
+.td-acciones {
+  display: table-cell !important;
+  text-align: right;
+  vertical-align: middle;
+}
+
+.acciones-wrapper {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+}
+
+.btn-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  height: 2rem;
+  padding: 0 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-edit {
+  background-color: #ffffff;
+  color: #27272a;
+  border: 1px solid #e4e4e7;
+}
+
+.btn-edit:hover {
+  background-color: #f4f4f5;
+  color: #09090b;
+  border-color: #d4d4d8;
+}
+
+.btn-toggle-status {
+  background-color: #ffffff;
+}
+
+.btn-deactivate {
+  color: #71717a;
+  border: 1px solid #e4e4e7;
+}
+
+.btn-deactivate:hover {
+  background-color: #fff1f2;
+  color: #e11d48;
+  border-color: #fecdd3;
+}
+
+.btn-activate {
+  color: #09090b;
+  border: 1px solid #09090b;
+}
+
+.btn-activate:hover {
+  background-color: #09090b;
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   NUEVOS ESTILOS: TAB SWITCHER Y MODALES FLOTANTES
+   ========================================================================== */
+
+/* Pestañas Lógicas */
+.admin-tabs {
+  display: flex;
+  gap: 0.5rem;
+  border-bottom: 1px solid #e4e4e7;
+  margin-bottom: 2rem;
+  padding-bottom: 0.5rem;
+}
+
+.tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #71717a;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tab-btn:hover {
+  color: #09090b;
+}
+
+.tab-btn.active {
+  color: #09090b;
+  border-bottom-color: #09090b;
+}
+
+/* Modal Flotante Overlay */
+.admin-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1.5rem;
+  animation: modalFadeIn 0.3s ease-out;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* Tarjeta del Modal */
+.admin-modal-card {
+  background-color: #ffffff;
+  border: 1px solid #e4e4e7;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 640px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh;
+  animation: modalSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalSlideUp {
+  from {
+    transform: translateY(16px);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* Cabecera del Modal */
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid #e4e4e7;
+}
+
+.modal-header h2 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #09090b;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.btn-close-modal {
+  background: transparent;
+  border: none;
+  color: #71717a;
+  cursor: pointer;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.btn-close-modal:hover {
+  background-color: #f4f4f5;
+  color: #09090b;
+}
+
+/* ==========================================================================
+   FORMULARIO Y GRID REBALANCEADO (EL FIX MAGISTRAL)
+   ========================================================================== */
+
+.admin-modal-card form {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  /* FIX FUNDAMENTAL: columns, no cols */
+  gap: 1.25rem;
+  padding: 1.5rem;
+  box-sizing: border-box;
+}
+
+@media (min-width: 640px) {
+  .form-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    /* FIX FUNDAMENTAL: columns */
+  }
+
+  .full-width {
+    grid-column: span 2 !important;
+    /* Ahora el span sí funciona porque las columnas existen */
+  }
+}
+
+/* Elementos de Formulario */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  width: 100%;
+}
+
+.form-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #71717a;
+}
+
+.form-input {
+  height: 2.5rem;
+  padding: 0 0.75rem;
+  font-size: 0.875rem;
+  border: 1px solid #e4e4e7;
+  border-radius: 6px;
+  background-color: #ffffff;
+  color: #09090b;
+  transition: all 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #09090b;
+  box-shadow: 0 0 0 2px rgba(9, 9, 11, 0.05);
+}
+
+.form-input::placeholder {
+  color: #a1a1aa;
+}
+
+.select-input {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2371717a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1rem;
+  padding-right: 2rem;
+}
+
+.textarea-input {
+  height: auto;
+  min-height: 120px;
+  padding: 0.75rem;
+  resize: vertical;
+  font-family: inherit;
+}
+
+/* Pie de Página del Modal */
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  padding: 1.25rem 1.5rem;
+  border-top: 1px solid #e4e4e7;
+  background-color: #fafafa;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.btn-cancel {
+  height: 2.5rem;
+  padding: 0 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #71717a;
+  background-color: #ffffff;
+  border: 1px solid #e4e4e7;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-cancel:hover {
+  background-color: #f4f4f5;
+  color: #09090b;
+  border-color: #d4d4d8;
+}
+
+.btn-submit {
+  height: 2.5rem;
+  padding: 0 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: #09090b;
+  border: 1px solid #09090b;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-submit:hover:not(:disabled) {
+  background-color: #27272a;
+  border-color: #27272a;
+}
+
+.btn-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-spinner {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* 1. Contenedor con scroll para que la tabla no rompa el diseño */
+.admin-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  /* IMPORTANTE: Permite scroll horizontal sin romper el layout */
+  margin-top: 1rem;
+}
+
+/* 2. Tabla con ancho mínimo forzado */
+.admin-table {
+  width: 100%;
+  min-width: 900px;
+  /* IMPORTANTE: Obliga a la tabla a no aplastarse */
+  border-collapse: collapse;
+}
+
+/* 3. Definición de anchos exactos por columna (El secreto de la simetría) */
+.th-id,
+.td-id {
+  width: 60px;
+  text-align: center;
+}
+
+.th-image,
+.td-image {
+  width: 80px;
+  text-align: center;
+}
+
+.th-nombre,
+.td-nombre {
+  width: 250px;
+}
+
+.th-modelo,
+.td-modelo {
+  width: 120px;
+}
+
+.th-categoria,
+.td-categoria {
+  width: 150px;
+}
+
+.th-estado,
+.td-estado {
+  width: 100px;
+  text-align: center;
+}
+
+.th-acciones,
+.td-acciones {
+  width: 220px;
+  text-align: right;
+}
+
+/* 4. Estilos para evitar desbordamientos de texto */
+.td-nombre,
+.td-modelo,
+.td-categoria {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

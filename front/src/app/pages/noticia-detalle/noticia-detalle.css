@@ -1,0 +1,710 @@
+/* ============================================================================
+   ESTILOS PREMIUM — PORTAL EDITORIAL DE ARTÍCULOS TÉCNICOS (TEKTONICA)
+   Estilo: Apple News / Medium — Minimalismo Blanco & Negro
+   ============================================================================ */
+
+.noticia-detalle-wrapper {
+  background-color: #FFFFFF;
+  color: #1D1D1F;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Animaciones de entrada suaves */
+.animate-fade-in {
+  animation: editorialFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes editorialFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================================================
+   A. ESTADO CARGANDO: Pantalla minimalista centrada con spinner sutil
+   ============================================================================ */
+.noticia-cargando-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #FFFFFF;
+  padding: 24px;
+}
+
+.spinner-editorial {
+  width: 48px;
+  height: 48px;
+  border: 2px solid rgba(17, 17, 17, 0.05);
+  border-top-color: #111111;
+  border-radius: 50%;
+  animation: spinHorizontal 1s linear infinite;
+  margin-bottom: 24px;
+}
+
+@keyframes spinHorizontal {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.cargando-texto-esmerilado {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #86868B;
+  letter-spacing: -0.1px;
+}
+
+/* ============================================================================
+   B. ESTADO ERROR: Pantalla limpia con icono y botón negro pulido
+   ============================================================================ */
+.noticia-error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  text-align: center;
+  padding: 48px 24px;
+  background-color: #FFFFFF;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.error-icon-wrapper {
+  color: #E3000F;
+  margin-bottom: 24px;
+}
+
+.noticia-error-container h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #111111;
+  margin-bottom: 12px;
+  letter-spacing: -0.5px;
+}
+
+.error-descripcion {
+  font-size: 1rem;
+  color: #515154;
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+
+.btn-volver-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #111111;
+  color: #FFFFFF;
+  border: none;
+  padding: 14px 28px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 24px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(17, 17, 17, 0.15);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-volver-primary:hover {
+  background-color: #2D2D30;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(17, 17, 17, 0.25);
+}
+
+.btn-volver-primary svg {
+  transition: transform 0.2s ease;
+}
+
+.btn-volver-primary:hover svg {
+  transform: translateX(-4px);
+}
+
+/* ============================================================================
+   C. ESTADO COMPLETO: RUTA DE LECTURA EDITORIAL
+   ============================================================================ */
+
+/* Botón Flotante Superior Izquierdo */
+.nav-flotante-superior {
+  position: absolute;
+  top: 32px;
+  left: 32px;
+  z-index: 10;
+}
+
+.btn-volver-minimal {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: #111111;
+  border: 1px solid rgba(17, 17, 17, 0.08);
+  padding: 8px 18px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.btn-volver-minimal:hover {
+  background: #111111;
+  color: #FFFFFF;
+  border-color: #111111;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.btn-volver-minimal svg {
+  transition: transform 0.2s ease;
+}
+
+.btn-volver-minimal:hover svg {
+  transform: translateX(-3px);
+}
+
+/* Hero Header (Contenedor de Portada) - Altura fija de 450px */
+.noticia-hero-container {
+  position: relative;
+  width: 100%;
+  height: 450px;
+  background-color: #000000;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+}
+
+.hero-media-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.hero-overlay-dark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg,
+      rgba(0, 0, 0, 0.4) 0%,
+      rgba(0, 0, 0, 0.2) 50%,
+      rgba(0, 0, 0, 0.85) 100%);
+  z-index: 2;
+}
+
+.hero-text-overlay {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 48px;
+  box-sizing: border-box;
+}
+
+.hero-meta-badge-row {
+  margin-bottom: 18px;
+}
+
+.hero-categoria-badge-glass {
+  display: inline-block;
+  background-color: rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: #FFFFFF;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.hero-titulo-editorial {
+  font-size: 3.2rem;
+  font-weight: 800;
+  line-height: 1.15;
+  color: #FFFFFF;
+  margin: 0 0 16px 0;
+  letter-spacing: -1.5px;
+  max-width: 960px;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+}
+
+.hero-fecha-publicacion {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+}
+
+.calendar-icon {
+  opacity: 0.8;
+}
+
+/* ============================================================================
+   CUERPO EDITORIAL DEL ARTÍCULO (Lectura inmersiva)
+   ============================================================================ */
+.noticia-editorial-body {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 80px 48px 100px 48px;
+  box-sizing: border-box;
+}
+
+.noticia-cuerpo-texto {
+  max-width: 740px;
+  margin: 0 auto;
+}
+
+/* Inyección quirúrgica: Forzamos estilos al HTML dinámico del innerHTML */
+.noticia-cuerpo-texto ::ng-deep p {
+  font-size: 1.2rem;
+  line-height: 1.9;
+  color: #232326;
+  font-weight: 400;
+  margin-bottom: 2rem;
+  letter-spacing: -0.05px;
+  text-align: justify;
+}
+
+.noticia-cuerpo-texto ::ng-deep h2 {
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: #111111;
+  margin-top: 3.8rem;
+  margin-bottom: 1.2rem;
+  letter-spacing: -0.6px;
+  line-height: 1.25;
+}
+
+.noticia-cuerpo-texto ::ng-deep h3 {
+  font-size: 1.45rem;
+  font-weight: 600;
+  color: #111111;
+  margin-top: 2.8rem;
+  margin-bottom: 1rem;
+  letter-spacing: -0.4px;
+}
+
+.noticia-cuerpo-texto ::ng-deep strong {
+  font-weight: 600;
+  color: #000000;
+}
+
+.noticia-cuerpo-texto ::ng-deep ul,
+.noticia-cuerpo-texto ::ng-deep ol {
+  margin-bottom: 2rem;
+  padding-left: 24px;
+}
+
+.noticia-cuerpo-texto ::ng-deep li {
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: #232326;
+  margin-bottom: 0.8rem;
+}
+
+.noticia-cuerpo-texto ::ng-deep blockquote {
+  border-left: 3.5px solid #111111;
+  margin: 2.5rem 0;
+  padding: 8px 0 8px 24px;
+  font-style: italic;
+  font-size: 1.25rem;
+  color: #424245;
+  line-height: 1.8;
+}
+
+/* ============================================================================
+   MICRO-FICHA TÉCNICA (GRILLA EJECUTIVA DE DATOS CLAVE)
+   ============================================================================ */
+.ficha-tecnica-section {
+  max-width: 740px;
+  margin: 56px auto 0;
+}
+
+.ficha-tecnica-titulo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #111111;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(17, 17, 17, 0.08);
+}
+
+.ficha-tecnica-titulo svg {
+  color: #86868B;
+  flex-shrink: 0;
+}
+
+.ficha-tecnica-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border: 1px solid rgba(17, 17, 17, 0.08);
+  border-radius: 12px;
+  overflow: hidden;
+  background: #FAFAFA;
+}
+
+.ficha-dato {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 28px 16px;
+  text-align: center;
+  border-right: 1px solid rgba(17, 17, 17, 0.06);
+  border-bottom: 1px solid rgba(17, 17, 17, 0.06);
+  transition: background-color 0.2s ease;
+}
+
+.ficha-dato:hover {
+  background: #F0F0F2;
+}
+
+.ficha-dato:last-child {
+  border-right: none;
+}
+
+/* Quitar border-bottom de la última fila */
+.ficha-dato:nth-last-child(-n+4) {
+  border-bottom: none;
+}
+
+.ficha-clave {
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #86868B;
+  margin-bottom: 8px;
+}
+
+.ficha-valor {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #111111;
+  letter-spacing: -0.5px;
+}
+
+/* ============================================================================
+   SUBTÍTULO SECUNDARIO EDITORIAL
+   ============================================================================ */
+.subtitulo-secundario-editorial {
+  max-width: 740px;
+  margin: 56px auto 0;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #111111;
+  line-height: 1.4;
+  letter-spacing: -0.5px;
+  padding-top: 40px;
+  border-top: 1px solid rgba(17, 17, 17, 0.08);
+}
+
+/* ============================================================================
+   CONTENEDOR MULTIMEDIA DE VIDEO EMBEBIDO (YouTube / Vimeo)
+   ============================================================================ */
+.video-embebido-section {
+  max-width: 740px;
+  margin: 56px auto 0;
+}
+
+.video-embebido-wrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* Aspect ratio 16:9 */
+  border-radius: 12px;
+  overflow: hidden;
+  background: #000000;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(17, 17, 17, 0.06);
+}
+
+.video-embebido-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.video-caption {
+  text-align: center;
+  font-size: 0.82rem;
+  color: #86868B;
+  font-weight: 500;
+  margin-top: 16px;
+  letter-spacing: 0.2px;
+}
+
+/* ============================================================================
+   BANNER CTA DE CIERRE COMERCIAL (CRISTAL ESMERILADO PREMIUM)
+   ============================================================================ */
+.cta-banner-editorial {
+  max-width: 740px;
+  margin: 72px auto 0;
+}
+
+.cta-banner-content {
+  background: rgba(245, 245, 247, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(17, 17, 17, 0.06);
+  border-radius: 16px;
+  padding: 48px 40px;
+  text-align: center;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.02);
+}
+
+.cta-banner-titulo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111111;
+  margin-bottom: 12px;
+  letter-spacing: -0.5px;
+  line-height: 1.35;
+}
+
+.cta-banner-descripcion {
+  font-size: 1rem;
+  color: #515154;
+  line-height: 1.6;
+  margin-bottom: 32px;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-banner-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #111111;
+  color: #FFFFFF;
+  border: none;
+  padding: 14px 32px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 28px;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(17, 17, 17, 0.18);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  letter-spacing: -0.1px;
+}
+
+.cta-banner-btn:hover {
+  background-color: #2D2D30;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(17, 17, 17, 0.28);
+}
+
+.cta-banner-btn svg {
+  transition: transform 0.2s ease;
+}
+
+.cta-banner-btn:hover svg {
+  transform: translateX(4px);
+}
+
+/* ============================================================================
+   CIERRE Y FOOTER INTERNO
+   ============================================================================ */
+.noticia-cierre-footer {
+  max-width: 740px;
+  margin: 64px auto 0 auto;
+  text-align: center;
+}
+
+.divisor-sutil {
+  border: 0;
+  height: 1px;
+  background-color: rgba(17, 17, 17, 0.08);
+  margin-bottom: 40px;
+}
+
+.btn-volver-footer {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: transparent;
+  color: #111111;
+  border: 1px solid #111111;
+  padding: 12px 28px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 24px;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-volver-footer:hover {
+  background-color: #111111;
+  color: #FFFFFF;
+  transform: translateY(-1px);
+}
+
+.btn-volver-footer svg {
+  transition: transform 0.2s ease;
+}
+
+.btn-volver-footer:hover svg {
+  transform: translateX(-4px);
+}
+
+/* ============================================================================
+   MEDIA QUERIES (RESPONSIVIDAD TOTAL)
+   ============================================================================ */
+@media (max-width: 1024px) {
+  .noticia-hero-container {
+    height: 380px;
+  }
+
+  .hero-titulo-editorial {
+    font-size: 2.4rem;
+  }
+
+  .hero-text-overlay {
+    padding: 32px;
+  }
+
+  .noticia-editorial-body {
+    padding: 48px 32px 80px 32px;
+  }
+
+  .ficha-tecnica-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Corregir border-bottom para grilla 2 cols */
+  .ficha-dato:nth-last-child(-n+4) {
+    border-bottom: 1px solid rgba(17, 17, 17, 0.06);
+  }
+
+  .ficha-dato:nth-last-child(-n+2) {
+    border-bottom: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-flotante-superior {
+    top: 20px;
+    left: 20px;
+  }
+
+  .btn-volver-minimal {
+    padding: 6px 14px;
+    font-size: 0.85rem;
+  }
+
+  .noticia-hero-container {
+    height: 340px;
+  }
+
+  .hero-text-overlay {
+    padding: 24px;
+  }
+
+  .hero-titulo-editorial {
+    font-size: 1.9rem;
+    letter-spacing: -0.8px;
+  }
+
+  .noticia-editorial-body {
+    padding: 32px 20px 60px 20px;
+  }
+
+  .noticia-cuerpo-texto ::ng-deep p {
+    font-size: 1.1rem;
+    line-height: 1.75;
+    margin-bottom: 1.4rem;
+  }
+
+  .noticia-cuerpo-texto ::ng-deep h2 {
+    font-size: 1.5rem;
+    margin-top: 2.6rem;
+  }
+
+  .noticia-cuerpo-texto ::ng-deep h3 {
+    font-size: 1.3rem;
+    margin-top: 2rem;
+  }
+
+  .ficha-tecnica-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .ficha-dato {
+    padding: 20px 12px;
+  }
+
+  .ficha-valor {
+    font-size: 1.1rem;
+  }
+
+  .subtitulo-secundario-editorial {
+    font-size: 1.35rem;
+    margin-top: 40px;
+    padding-top: 32px;
+  }
+
+  .cta-banner-content {
+    padding: 36px 24px;
+  }
+
+  .cta-banner-titulo {
+    font-size: 1.25rem;
+  }
+
+  .cta-banner-descripcion {
+    font-size: 0.92rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .ficha-tecnica-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .hero-titulo-editorial {
+    font-size: 1.6rem;
+  }
+
+  .noticia-editorial-body {
+    padding: 24px 16px 48px 16px;
+  }
+}

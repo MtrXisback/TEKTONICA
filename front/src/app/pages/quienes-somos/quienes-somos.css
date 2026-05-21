@@ -1,0 +1,201 @@
+/* ============================================================================
+   ESTILOS DE LA PÁGINA "QUIÉNES SOMOS" - TEKTONICA EDITORIAL MINIMALISTA
+   ============================================================================ */
+
+.about-container {
+  max-width: 1200px;
+  margin: 60px auto;
+  padding: 0 40px;
+  background-color: #FFFFFF;
+  font-family: var(--font-family, 'Inter', sans-serif);
+}
+
+/* ENCABEZADO EDITORIAL DE ALTO IMPACTO */
+.about-header {
+  margin-bottom: 60px;
+  border-bottom: 1px solid rgba(17, 17, 17, 0.06);
+  padding-bottom: 40px;
+}
+
+.about-main-title {
+  font-size: 3.75rem;          /* text-6xl */
+  font-weight: 900;             /* font-black */
+  color: #09090b;               /* text-zinc-950 */
+  letter-spacing: -0.05em;      /* tracking-tight */
+  margin-bottom: 12px;
+  line-height: 1.05;
+  font-family: 'Outfit', sans-serif;
+}
+
+.about-subtitle {
+  font-size: 0.95rem;
+  color: #71717a;               /* text-zinc-500 */
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* REJILLA ASIMÉTRICA PRINCIPAL */
+.about-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* col-span-2 vs col-span-1 */
+  gap: 60px;
+  align-items: start;
+}
+
+@media (max-width: 992px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .about-container {
+    padding: 0 24px;
+    margin: 40px auto;
+  }
+  .about-main-title {
+    font-size: 2.75rem;
+  }
+}
+
+/* BLOQUE DE CONTENIDO PRINCIPAL (IZQUIERDA) */
+.about-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.about-lead-paragraph {
+  font-size: 1.35rem;            /* Párrafo destacado */
+  font-weight: 500;
+  line-height: 1.45;
+  color: #111111;
+  margin-bottom: 40px;
+  letter-spacing: -0.2px;
+}
+
+.about-content p {
+  font-size: 1rem;              /* text-base */
+  color: #52525b;               /* text-zinc-600 */
+  line-height: 1.7;             /* leading-relaxed */
+  margin-bottom: 24px;          /* mb-6 */
+  font-weight: 400;
+}
+
+.about-section-title {
+  font-size: 1.5rem;            /* text-xl */
+  font-weight: 700;             /* font-bold */
+  color: #18181b;               /* text-zinc-900 */
+  margin-top: 48px;             /* mt-8 */
+  margin-bottom: 20px;          /* mb-4 */
+  letter-spacing: -0.4px;
+  font-family: 'Outfit', sans-serif;
+}
+
+/* BLOQUES INDIVIDUALES DE LA SECCIÓN DE RESUMEN */
+.about-summary-section {
+  margin-top: 40px;
+}
+
+.policy-block {
+  margin-bottom: 36px;
+  scroll-margin-top: 100px;     /* Previene que la barra de navegación tape el encabezado al saltar de anchor */
+}
+
+.policy-block h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #09090b;
+  margin-bottom: 12px;
+}
+
+.pilar-item {
+  scroll-margin-top: 100px;
+}
+
+.pilar-item strong {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #09090b;
+  display: block;
+}
+
+/* ÍNDICE LATERAL ADHERENTE (DERECHA) */
+.about-sidebar {
+  position: sticky;
+  top: 110px;                   /* sticky top-24 (aprox. 100px) */
+  background: transparent;
+  padding-left: 20px;
+  border-left: 1px solid rgba(17, 17, 17, 0.05); /* Separador vertical ultra-delgado */
+}
+
+@media (max-width: 992px) {
+  .about-sidebar {
+    position: static;
+    padding-left: 0;
+    border-left: none;
+    border-top: 1px solid rgba(17, 17, 17, 0.06);
+    padding-top: 30px;
+  }
+}
+
+.sidebar-sticky-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.sidebar-title {
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #09090b;
+  margin-bottom: 10px;
+}
+
+.toc-list {
+  list-style: decimal inside;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.toc-list li {
+  color: #71717a;               /* Números en gris claro */
+  font-size: 0.85rem;           /* text-sm */
+  line-height: 1.4;
+}
+
+.toc-link {
+  color: #52525b;               /* text-zinc-600 */
+  text-decoration: underline;   /* underline */
+  text-underline-offset: 4px;   /* underline-offset-4 */
+  transition: color 0.2s ease;  /* transition-colors */
+  font-weight: 450;             /* tipografía fina */
+}
+
+.toc-link:hover {
+  color: #09090b;               /* hover:text-zinc-950 */
+}
+
+.toc-footer {
+  margin-top: 24px;
+  border-top: 1px solid rgba(17, 17, 17, 0.05);
+  padding-top: 20px;
+}
+
+.back-to-top-btn {
+  font-size: 0.85rem;
+  color: #71717a;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  transition: color 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.back-to-top-btn:hover {
+  color: #09090b;
+}

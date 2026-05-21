@@ -1,0 +1,189 @@
+/* ============================================================================
+   ESTILOS DE LA PANTALLA DE ACCESO - TEKTONICA PANEL ADMINISTRATIVO
+   ============================================================================ */
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #F5F5F7;
+  padding: 40px 24px;
+  font-family: var(--font-family, 'Inter', sans-serif);
+}
+
+/* TARJETA CENTRAL DE AUTENTICACIÓN */
+.login-card {
+  width: 100%;
+  max-width: 440px;
+  background-color: #FFFFFF;
+  border-radius: 16px;
+  padding: 48px 40px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(17, 17, 17, 0.06);
+}
+
+/* MARCA E ISOTIPO VECTORIAL */
+.login-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.login-logo-svg {
+  width: 56px;
+  height: 56px;
+  color: #111111;
+  margin-bottom: 12px;
+}
+
+.login-brand-text {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #111111;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+/* ENCABEZADO DE ACCESO */
+.login-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.login-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.75rem;
+  font-weight: 900;
+  color: #09090b;
+  letter-spacing: -0.03em;
+  margin-bottom: 8px;
+}
+
+.login-subtitle {
+  font-size: 0.88rem;
+  color: #71717a;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+/* BANNER DE ERROR DE CREDENCIALES */
+.login-error-banner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #FEF2F2;
+  border: 1px solid #FECACA;
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin-bottom: 24px;
+  color: #991B1B;
+  font-size: 0.82rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.login-error-banner svg {
+  flex-shrink: 0;
+  color: #DC2626;
+}
+
+/* FORMULARIO DE AUTENTICACIÓN */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #18181b;
+  letter-spacing: 0.2px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 0.92rem;
+  font-family: 'Inter', sans-serif;
+  color: #09090b;
+  background-color: #FAFAFA;
+  border: 1px solid rgba(17, 17, 17, 0.12);
+  border-radius: 10px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+}
+
+.form-input::placeholder {
+  color: #a1a1aa;
+  font-weight: 400;
+}
+
+.form-input:focus {
+  border-color: #111111;
+  background-color: #FFFFFF;
+  box-shadow: 0 0 0 3px rgba(17, 17, 17, 0.06);
+}
+
+/* BOTÓN PRINCIPAL DE ACCESO */
+.login-submit-btn {
+  width: 100%;
+  padding: 14px 24px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 0.3px;
+  color: #FFFFFF;
+  background-color: #111111;
+  border: 1px solid #111111;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.25s ease, color 0.25s ease, opacity 0.25s ease;
+  margin-top: 4px;
+}
+
+.login-submit-btn:hover:not(:disabled) {
+  background-color: #000000;
+}
+
+.login-submit-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.login-spinner {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+}
+
+/* NOTA INFERIOR DE SEGURIDAD */
+.login-footer-note {
+  text-align: center;
+  font-size: 0.75rem;
+  color: #a1a1aa;
+  margin-top: 28px;
+  line-height: 1.4;
+  font-weight: 400;
+}
+
+/* RESPONSIVIDAD MOBILE */
+@media (max-width: 480px) {
+  .login-card {
+    padding: 36px 24px;
+  }
+  .login-title {
+    font-size: 1.5rem;
+  }
+}

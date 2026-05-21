@@ -1,0 +1,238 @@
+<div class="landing-container">
+
+  <!-- 1. Sección Hero Principal (Estilo Apple / Samsung con Video de Fondo) -->
+  <section class="hero animate-fade-in">
+    <!-- Video de fondo automatizado y optimizado -->
+    <video autoplay loop muted playsinline [muted]="true" class="hero-video-bg">
+      <source src="assets/videos/v1.mp4" type="video/mp4">
+    </video>
+    <div class="hero-video-overlay"></div>
+
+    <div class="hero-content">
+      <div class="corporate-badge">
+        <span class="badge-text">TEKTONICA Precision</span>
+      </div>
+      <h1 class="hero-title">Ingeniería de alta precisión para la industria geoespacial</h1>
+      <p class="hero-description">TEKTONICA lidera el camino en geodesia, minería, construcción y agricultura de alta
+        precisión con tecnología avanzada de hardware y software y asesoría experta.</p>
+      <div class="cta-buttons">
+        <a routerLink="/catalogo" class="btn btn-primary">Ver Catálogo Técnico</a>
+        <a routerLink="/contacto" class="btn btn-secondary">Solicitar Asesoría</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Sección de Propuesta de Valor (3 Columnas Minimalistas y Clip Demostrativo) -->
+  <section class="propuesta-seccion">
+    <div class="seccion-header">
+      <div class="capsula-badge">
+        <span class="subtitulo-capsula">Por qué elegirnos</span>
+      </div>
+      <h2 class="titulo-gradiente">Nuestra propuesta de valor</h2>
+      <p class="descripcion-suave">Aseguramos la precisión absoluta y la continuidad operacional de cada uno de sus proyectos.</p>
+    </div>
+
+    <div class="propuesta-grid">
+      <!-- Tarjeta 1: Asesoría Especializada -->
+      <div class="propuesta-card">
+        <div class="card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10" />
+            <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" />
+          </svg>
+        </div>
+        <h3>Asesoría Especializada</h3>
+        <p class="descripcion-tarjeta">Orientación técnica rigurosa a cargo de ingenieros especialistas para la selección precisa del instrumental
+          óptimo para su faena.</p>
+      </div>
+
+      <!-- Tarjeta 2: Logística y Despacho -->
+      <div class="propuesta-card">
+        <div class="card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="1" y="3" width="15" height="13" />
+            <polygon points="16 8 20 8 23 11 23 16 16 16 16 8" />
+            <circle cx="5.5" cy="18.5" r="2.5" />
+            <circle cx="18.5" cy="18.5" r="2.5" />
+          </svg>
+        </div>
+        <h3>Logística y Despacho</h3>
+        <p class="descripcion-tarjeta">Gestión de envíos eficientes y asegurados a nivel nacional, garantizando la entrega del equipamiento en minas
+          y obras civiles complejas.</p>
+      </div>
+
+      <!-- Tarjeta 3: Soporte Técnico -->
+      <div class="propuesta-card">
+        <div class="card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path
+              d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
+          </svg>
+        </div>
+        <h3>Soporte Técnico</h3>
+        <p class="descripcion-tarjeta">Respaldo post-venta integral en laboratorio de calibración y terreno, liderado por ingenieros especialistas
+          en geomensura.</p>
+      </div>
+    </div>
+
+    <!-- Clip de Video Interactivo 2: Calibración y Laboratorio (Contenedor Semántico Listo) -->
+    <div class="propuesta-demo-video">
+      <div class="video-info">
+        <div class="capsula-badge mini">
+          <span class="subtitulo-capsula">Calibración en laboratorio</span>
+        </div>
+        <h3>Precisión Certificada</h3>
+        <p class="descripcion-suave">Cada equipo geodésico y óptico es calibrado y certificado rigurosamente en nuestro laboratorio de alta tecnología antes de ingresar a campo.</p>
+      </div>
+      <div class="video-wrapper">
+        <video autoplay loop muted playsinline [muted]="true" class="interactive-video">
+          <source src="assets/videos/v2.mp4" type="video/mp4">
+          Su navegador no soporta la reproducción de este video corporativo.
+        </video>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2.5. Nueva Sección: Impacto y Cifras de Precisión (Inspirado en Rio Tinto) -->
+  <section class="impacto-seccion">
+    <div class="impacto-container">
+      <div class="impacto-content">
+        <span class="subtitulo">Operaciones & Tecnología</span>
+        <h2>Redefiniendo la precisión geoespacial a escala industrial</h2>
+        <p class="impacto-lead">
+          Al igual que los líderes globales de la minería y la infraestructura, optimizamos la toma de decisiones críticas en el terreno físico mediante datos de fidelidad absoluta.
+        </p>
+      </div>
+
+      <!-- Grid de Cifras Clave de Alto Impacto -->
+      <div class="cifras-grid">
+        <div class="cifra-card">
+          <div class="cifra-numero">0.01<span class="cifra-unidad">mm</span></div>
+          <div class="cifra-divider"></div>
+          <h4>Precisión Instrumental</h4>
+          <p>Tolerancia analítica garantizada en nuestros servicios de calibración óptica y geodésica bajo estándares internacionales.</p>
+        </div>
+
+        <div class="cifra-card">
+          <div class="cifra-numero">150<span class="cifra-unidad">+</span></div>
+          <div class="cifra-divider"></div>
+          <h4>Proyectos Mineros</h4>
+          <p>Presencia activa en las faenas y obras civiles más exigentes del continente, respaldando la viabilidad estructural.</p>
+        </div>
+
+        <div class="cifra-card">
+          <div class="cifra-numero">100<span class="cifra-unidad">%</span></div>
+          <div class="cifra-divider"></div>
+          <h4>Datos Certificados</h4>
+          <p>Integridad de datos de realidad 3D mediante sensores LiDAR de última generación y software CAD de procesamiento masivo.</p>
+        </div>
+
+        <div class="cifra-card">
+          <div class="cifra-numero">24<span class="cifra-unidad">/7</span></div>
+          <div class="cifra-divider"></div>
+          <h4>Ingeniería de Faena</h4>
+          <p>Soporte post-venta continuo y asistencia técnica directa en sitio ante entornos geográficos extremos.</p>
+        </div>
+      </div>
+
+      <!-- Banner de Fusión Tecnológica Asimétrica -->
+      <div class="fusion-banner">
+        <div class="fusion-col-text">
+          <span class="subtitulo-mini">El poder de la integración</span>
+          <h3>La convergencia perfecta entre Hardware y Software</h3>
+          <p>
+            No comercializamos simple instrumental. Desarrollamos la infraestructura analítica completa de sus proyectos. Sincronizamos estaciones totales robóticas y drones autónomos con suites de software geoespacial que transforman millones de puntos físicos en gemelos digitales listos para el modelado BIM.
+          </p>
+          <div class="fusion-cta">
+            <a routerLink="/catalogo" class="btn-text-link">Explorar ecosistema tecnológico &rarr;</a>
+          </div>
+        </div>
+        <div class="fusion-col-visual">
+          <!-- Video de fondo premium integrado -->
+          <video autoplay loop muted playsinline [muted]="true" class="fusion-video-bg">
+            <source src="assets/videos/v3.mp4" type="video/mp4">
+          </video>
+          <div class="fusion-video-overlay"></div>
+          <div class="visual-badge">Sistemas Autónomos LiDAR</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Sección de Novedades y Blog (Tarjetas dinámicas desde la base de datos con paginación progresiva) -->
+  <section class="blog-seccion">
+    <div class="seccion-header">
+      <span class="subtitulo">Conocimiento técnico</span>
+      <h2>Novedades y artículos</h2>
+      <p>Explore las últimas tendencias tecnológicas y metodológicas del sector geoespacial.</p>
+    </div>
+
+    <div class="blog-grid" *ngIf="!cargandoNoticias && !errorNoticias">
+      <article class="blog-card blog-card-animated"
+        *ngFor="let noticia of noticias | slice:0:limiteVisible; let i = index"
+        [class.blog-card-video]="(i + 1) % 3 === 2 && esVideo(noticia.urlImagen)">
+        <div class="blog-image">
+          <!-- Segundo slot de cada grupo de 3: renderiza video si el recurso es multimedia -->
+          <video *ngIf="(i + 1) % 3 === 2 && esVideo(noticia.urlImagen)" autoplay loop muted playsinline [muted]="true"
+            class="card-video-loop">
+            <source [src]="noticia.urlImagen" type="video/mp4">
+          </video>
+          <!-- En cualquier otro caso, o si no es video, renderiza imagen estática -->
+          <ng-container *ngIf="noticia.urlImagen; else placeholderImg">
+            <img [src]="noticia.urlImagen" [alt]="noticia.titulo" class="hero-media-bg" />
+          </ng-container>
+          <ng-template #placeholderImg>
+            <img src="assets/images/placeholder-news.png" [alt]="noticia.titulo" class="hero-media-bg" />
+          </ng-template>
+          <span class="blog-categoria">{{noticia.categoria}}</span>
+        </div>
+        <div class="blog-body">
+          <div class="blog-meta">
+            <span class="blog-fecha">{{formatearFecha(noticia.fecha)}}</span>
+          </div>
+          <h3>{{noticia.titulo}}</h3>
+          <p>{{noticia.contenido}}</p>
+          <a [routerLink]="['/novedades', noticia.id]" class="blog-enlace">Leer artículo completo <span
+              class="arrow">&rarr;</span></a>
+        </div>
+      </article>
+    </div>
+
+    <!-- Botón evaluador de carga progresiva con efecto cristal esmerilado -->
+    <div class="blog-load-more-wrapper" *ngIf="!cargandoNoticias && !errorNoticias && limiteVisible < noticias.length">
+      <button class="btn-load-more" (click)="mostrarMasNoticias()">
+        Explorar más artículos
+        <span class="arrow">&rarr;</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- 4. Sección de Marcas Aliadas (Logos en banner minimalista) -->
+  <section class="marcas-seccion">
+    <div class="marcas-wrapper">
+      <span class="marcas-label">Marcas líderes que confían en nosotros</span>
+      <div class="marcas-carrusel">
+        <div class="marca-logo">Trimble</div>
+        <div class="marca-logo">GeoMax</div>
+        <div class="marca-logo">DJI Enterprise</div>
+        <div class="marca-logo">Kurloo</div>
+        <div class="marca-logo">Scantech</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Botón Flotante Fijo de WhatsApp (FAB) Premium -->
+  <a href="https://wa.me/51957019460?text=Hola%20TEKTONICA,%20me%20gustar%C3%ADa%20solicitar%20informaci%C3%B3n%20y%20una%20asesor%C3%ADa%20t%C3%A9cnica%20sobre%20sus%20equipos%20geoespaciales." 
+     target="_blank" 
+     rel="noopener noreferrer" 
+     class="whatsapp-floating-btn" 
+     title="Hablemos por WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="30" height="30" fill="currentColor">
+      <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L3 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7 .9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+    </svg>
+  </a>
+
+</div>

@@ -1,0 +1,1037 @@
+/* ============================================================================
+   ESTILOS DE LA LANDING PAGE - ELEGANCIA MINIMALISTA CLARA (TEKTONICA WHITE & BLACK)
+   ============================================================================ */
+
+.landing-container {
+  background-color: #FFFFFF;    /* Blanco puro */
+  color: #1D1D1F;               /* Negro grafito Apple Pro */
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  overflow-x: hidden;
+  padding-bottom: 0;
+}
+
+/* Animaciones suaves */
+.animate-fade-in {
+  animation: fadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================================================
+   1. SECCIÓN HERO CON VIDEO DE FONDO DINÁMICO CLARO (CRISTAL BLANCO)
+   ============================================================================ */
+.hero {
+  position: relative;
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 140px 24px;
+  background-color: #FFFFFF;
+  margin: 0;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(17, 17, 17, 0.08);
+}
+
+.hero-video-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero-video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    180deg, 
+    rgba(255, 255, 255, 0.45) 0%, 
+    rgba(255, 255, 255, 0.75) 60%, 
+    #FFFFFF 100%
+  );
+  z-index: 2;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+  max-width: 860px;
+  text-align: center;
+}
+
+.corporate-badge {
+  display: inline-flex;
+  align-items: center;
+  background-color: rgba(17, 17, 17, 0.04);
+  border: 1px solid rgba(17, 17, 17, 0.08);
+  padding: 6px 16px;
+  border-radius: 20px;
+  margin-bottom: 30px;
+  backdrop-filter: blur(8px);
+}
+
+.badge-text {
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  color: #111111;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.hero-title {
+  font-size: 3.6rem;
+  font-weight: 800;
+  line-height: 1.15;
+  margin-bottom: 24px;
+  letter-spacing: -1.5px;
+  color: #111111;
+  text-shadow: none;           /* Removida sombra oscura para encajar en fondos claros */
+}
+
+.hero-description {
+  font-size: 1.25rem;
+  color: #515154;
+  line-height: 1.6;
+  max-width: 680px;
+  margin: 0 auto 44px auto;
+  font-weight: 400;
+}
+
+/* BOTONES CTA ESTILO PÍLDORA BLANCO Y NEGRO */
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 34px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 24px;
+  text-decoration: none;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  letter-spacing: -0.1px;
+}
+
+.btn-primary {
+  background-color: #111111;   /* Negro sólido */
+  color: #FFFFFF;
+  box-shadow: 0 4px 12px rgba(17, 17, 17, 0.15);
+}
+
+.btn-primary:hover {
+  background-color: #2D2D30;   /* Gris grafito oscuro */
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(17, 17, 17, 0.25);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: #111111;
+  border: 1px solid #111111;
+  backdrop-filter: none;
+}
+
+.btn-secondary:hover {
+  background-color: #111111;
+  color: #FFFFFF;
+  border-color: #111111;
+  transform: translateY(-1px);
+}
+
+/* ============================================================================
+   SECCIONES COMUNES (ENCABEZADOS ELEGANTES LIGHT)
+   ============================================================================ */
+.seccion-header {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 60px auto;
+  padding: 0 24px;
+}
+
+.subtitulo {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: #111111;
+  letter-spacing: 2px;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 12px;
+  opacity: 0.7;
+}
+
+.seccion-header h2 {
+  font-size: 2.4rem;
+  font-weight: 700;
+  letter-spacing: -1px;
+  color: #111111;
+  margin-bottom: 16px;
+}
+
+.seccion-header p {
+  color: #515154;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+/* ============================================================================
+   2. SECCIÓN DE PROPUESTA DE VALOR (ESTILO APPLE PRO CLARO - GRIS DE FONDO ENRIQUECIDO)
+   ============================================================================ */
+.propuesta-seccion {
+  position: relative;
+  z-index: 5;
+  padding: 120px 24px;
+  max-width: 1280px;
+  margin: 0 auto;
+  background: radial-gradient(circle at 50% 15%, #FFFFFF 0%, #F5F5F7 100%);
+  border-radius: 24px;
+  border: 1px solid rgba(17, 17, 17, 0.03);
+}
+
+/* Elementos del Header Premium */
+.capsula-badge {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(17, 17, 17, 0.03);
+  border: 1px solid rgba(17, 17, 17, 0.06);
+  padding: 6px 18px;
+  border-radius: 30px;
+  margin-bottom: 20px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.capsula-badge.mini {
+  padding: 4px 12px;
+  margin-bottom: 14px;
+  background: rgba(17, 17, 17, 0.02);
+}
+
+.subtitulo-capsula {
+  font-size: 0.75rem;
+  letter-spacing: 1.8px;
+  color: #111111;
+  font-weight: 700;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.titulo-gradiente {
+  font-size: 2.8rem;
+  font-weight: 800;
+  letter-spacing: -1.5px;
+  background: linear-gradient(135deg, #111111 0%, #515154 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 20px;
+}
+
+.descripcion-suave {
+  color: #515154;
+  font-size: 1.15rem;
+  line-height: 1.6;
+  font-weight: 400;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.descripcion-tarjeta {
+  color: #515154;
+  line-height: 1.65;
+  font-size: 0.95rem;
+  margin: 0;
+  font-weight: 400;
+}
+
+.propuesta-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-bottom: 80px;
+  margin-top: 40px;
+}
+
+.propuesta-card {
+  position: relative;
+  background-color: #FFFFFF;
+  border: 1px solid rgba(17, 17, 17, 0.05);
+  border-radius: 16px;
+  padding: 48px 36px;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.015);
+  overflow: hidden;
+}
+
+/* Efecto de borde brillante superior */
+.propuesta-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, rgba(17, 17, 17, 0.1), transparent);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.propuesta-card:hover::before {
+  opacity: 1;
+}
+
+.propuesta-card h3 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #111111;
+  margin-bottom: 14px;
+  letter-spacing: -0.3px;
+}
+
+.propuesta-card:hover {
+  transform: translateY(-8px);
+  background-color: #FFFFFF;
+  box-shadow: 0 24px 48px rgba(17, 17, 17, 0.06);
+  border-color: rgba(17, 17, 17, 0.12);
+}
+
+.card-icon {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background-color: rgba(17, 17, 17, 0.03);
+  border: 1px solid rgba(17, 17, 17, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #111111;
+  margin-bottom: 28px;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.propuesta-card:hover .card-icon {
+  background-color: #111111;
+  color: #FFFFFF;
+  border-color: #111111;
+  transform: scale(1.1) rotate(12deg);
+}
+
+/* 2.1 CLIP DE VIDEO DE PROPUESTA (CALIBRACIÓN / LAB ENRIQUECIDO) */
+.propuesta-demo-video {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 48px;
+  background-color: #FFFFFF;
+  border: 1px solid rgba(17, 17, 17, 0.05);
+  border-radius: 16px;
+  padding: 56px;
+  align-items: center;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.015);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.propuesta-demo-video:hover {
+  box-shadow: 0 24px 50px rgba(17, 17, 17, 0.04);
+  border-color: rgba(17, 17, 17, 0.1);
+}
+
+.propuesta-demo-video .video-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.propuesta-demo-video .video-info h3 {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #111111;
+  margin-bottom: 16px;
+  letter-spacing: -0.5px;
+}
+
+.propuesta-demo-video .video-info .descripcion-suave {
+  text-align: left;
+  margin: 0;
+  font-size: 1rem;
+}
+
+.propuesta-demo-video .video-wrapper {
+  position: relative;
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.05);
+  background-color: #F5F5F7;
+  border: 1px solid rgba(17, 17, 17, 0.05);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.propuesta-demo-video:hover .video-wrapper {
+  transform: scale(1.01);
+}
+
+.interactive-video {
+  width: 100%;
+  display: block;
+  border-radius: 12px;
+}
+
+/* ============================================================================
+   3. SECCIÓN NOVEDADES Y BLOG CLARO PREMIUM (FONDO BLANCO ALTERNADO)
+   ============================================================================ */
+.blog-seccion {
+  position: relative;
+  z-index: 5;
+  padding: 100px 24px;
+  background-color: #FFFFFF;    /* Fondo blanco puro alternado */
+  border-top: 1px solid rgba(17, 17, 17, 0.06);
+  border-bottom: 1px solid rgba(17, 17, 17, 0.06);
+}
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.blog-card {
+  position: relative;
+  background-color: #F5F5F7;    /* Tarjetas en gris Apple ultra-tenue sobre fondo blanco */
+  border: 1px solid rgba(17, 17, 17, 0.05);
+  border-radius: 12px;          /* Esquinas redondeadas de 12px estrictas */
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.01);
+}
+
+.blog-image {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  background-color: #FFFFFF;
+  border-bottom: 1px solid rgba(17, 17, 17, 0.04);
+}
+
+.blog-image img, 
+.card-video-loop {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.blog-card:hover .blog-image img,
+.blog-card:hover .card-video-loop {
+  transform: scale(1.03);
+}
+
+.blog-categoria {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background-color: rgba(17, 17, 17, 0.9);  /* Badge en negro traslúcido elegante */
+  color: #FFFFFF;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.blog-body {
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.blog-meta {
+  margin-bottom: 12px;
+}
+
+.blog-fecha {
+  font-size: 0.8rem;
+  color: #86868B;
+  font-weight: 500;
+}
+
+.blog-body h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #111111;               /* Negro grafito mate */
+  line-height: 1.4;
+  margin-bottom: 12px;
+  letter-spacing: -0.3px;
+}
+
+.blog-body p {
+  color: #1D1D1F;               /* Negro grafito para excelente contraste */
+  font-size: 0.95rem;
+  line-height: 1.55;
+  margin-bottom: 24px;
+  font-weight: 400;
+  /* Truncado estricto a 3 líneas para simetría vertical entre tarjetas */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.blog-enlace {
+  color: #111111;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: auto;
+  transition: opacity 0.2s ease;
+  opacity: 0.9;
+}
+
+.blog-enlace:hover {
+  opacity: 1;
+}
+
+.blog-enlace .arrow {
+  transition: transform 0.2s ease;
+}
+
+.blog-enlace:hover .arrow {
+  transform: translateX(4px);
+}
+
+.blog-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.04);
+  border-color: rgba(17, 17, 17, 0.12);
+  background-color: #FFFFFF;    /* Se aclara a blanco puro en hover */
+}
+
+/* MICRO-ANIMACIÓN DE ENTRADA PROGRESIVA PARA TARJETAS DINÁMICAS */
+.blog-card-animated {
+  animation: blogCardSlideIn 0.5s ease-in-out both;
+}
+
+@keyframes blogCardSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* BOTÓN EVALUADOR DE CARGA PROGRESIVA (CRISTAL ESMERILADO APPLE PRO) */
+.blog-load-more-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 48px;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.btn-load-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 36px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: #111111;
+  background: rgba(245, 245, 247, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(17, 17, 17, 0.1);
+  border-radius: 24px;
+  cursor: pointer;
+  letter-spacing: -0.1px;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+}
+
+.btn-load-more:hover {
+  background: #111111;
+  color: #FFFFFF;
+  border-color: #111111;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(17, 17, 17, 0.2);
+}
+
+.btn-load-more .arrow {
+  transition: transform 0.25s ease;
+}
+
+.btn-load-more:hover .arrow {
+  transform: translateX(4px);
+}
+
+/* ============================================================================
+   4. SECCIÓN MARCAS ALIADAS (MATE MINIMALISTA)
+   ============================================================================ */
+.marcas-seccion {
+  padding: 80px 24px;
+  background-color: #FFFFFF;
+  border-bottom: 1px solid rgba(17, 17, 17, 0.06);
+}
+
+.marcas-wrapper {
+  max-width: 1280px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.marcas-label {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  color: #86868B;
+  letter-spacing: 1.5px;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 40px;
+}
+
+.marcas-carrusel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 60px;
+  flex-wrap: wrap;
+}
+
+.marca-logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #D2D2D7;                /* Gris titanio suave por defecto */
+  letter-spacing: -0.5px;
+  user-select: none;
+  transition: color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.marca-logo:hover {
+  color: #111111;               /* Resalta a negro puro al hover */
+}
+
+/* ============================================================================
+   MEDIA QUERIES (RESPONSIVO)
+   ============================================================================ */
+@media (max-width: 1024px) {
+  .hero-title {
+    font-size: 2.8rem;
+  }
+  .propuesta-grid, .blog-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  .propuesta-demo-video {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 36px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 100px 16px;
+  }
+  .hero-title {
+    font-size: 2.2rem;
+  }
+  .hero-description {
+    font-size: 1.1rem;
+  }
+  .seccion-header h2 {
+    font-size: 1.8rem;
+  }
+  .propuesta-grid, .blog-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .propuesta-card {
+    padding: 36px 24px;
+  }
+  .marcas-carrusel {
+    gap: 30px;
+  }
+}
+
+/* ============================================================================
+   BOTÓN FLOTANTE DE WHATSAPP (AERO-GLASS PREMIUM)
+   ============================================================================ */
+.whatsapp-floating-btn {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  z-index: 9999;
+  width: 60px;
+  height: 60px;
+  background-color: #25D366;
+  color: #FFFFFF;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.35);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: wspPulse 2s infinite;
+}
+
+.whatsapp-floating-btn svg {
+  width: 30px;
+  height: 30px;
+  transition: transform 0.3s ease;
+}
+
+/* Efecto hover pro */
+.whatsapp-floating-btn:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 12px 30px rgba(37, 211, 102, 0.5);
+  background-color: #20BA5A;
+}
+
+.whatsapp-floating-btn:hover svg {
+  transform: scale(1.1);
+}
+
+/* Micro-efecto de pulsación cíclica suave */
+@keyframes wspPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5), 0 8px 24px rgba(37, 211, 102, 0.35);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(37, 211, 102, 0), 0 8px 24px rgba(37, 211, 102, 0.35);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0), 0 8px 24px rgba(37, 211, 102, 0.35);
+  }
+}
+
+/* Adaptación responsiva del botón flotante */
+@media (max-width: 768px) {
+  .whatsapp-floating-btn {
+    bottom: 20px;
+    right: 20px;
+    width: 52px;
+    height: 52px;
+  }
+  
+  .whatsapp-floating-btn svg {
+    width: 26px;
+    height: 26px;
+  }
+}
+
+/* ============================================================================
+   NUEVOS ESTILOS: SECCIÓN DE IMPACTO Y CIFRAS PREMIUM (ESTILO RIO TINTO / GEODESIA)
+   ============================================================================ */
+.impacto-seccion {
+  padding: 120px 24px;
+  background-color: #FFFFFF;
+  border-top: 1px solid rgba(17, 17, 17, 0.05);
+  border-bottom: 1px solid rgba(17, 17, 17, 0.05);
+}
+
+.impacto-container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.impacto-content {
+  text-align: left;
+  max-width: 800px;
+  margin-bottom: 70px;
+}
+
+.impacto-content h2 {
+  font-size: 2.8rem;
+  font-weight: 800;
+  letter-spacing: -1.5px;
+  line-height: 1.15;
+  color: #111111;
+  margin: 16px 0 24px 0;
+}
+
+.impacto-lead {
+  font-size: 1.25rem;
+  color: #515154;
+  line-height: 1.6;
+  font-weight: 400;
+  margin: 0;
+}
+
+/* Grid de Cifras Industriales */
+.cifras-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  margin-bottom: 90px;
+}
+
+.cifra-card {
+  background-color: #F5F5F7;
+  border: 1px solid rgba(17, 17, 17, 0.06);
+  border-radius: 12px;
+  padding: 40px 30px;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.cifra-card:hover {
+  transform: translateY(-5px);
+  background-color: #FFFFFF;
+  border-color: rgba(17, 17, 17, 0.15);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.04);
+}
+
+.cifra-numero {
+  font-size: 3.2rem;
+  font-weight: 800;
+  letter-spacing: -2px;
+  color: #111111;
+  line-height: 1;
+  display: flex;
+  align-items: baseline;
+}
+
+.cifra-unidad {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #86868B;
+  margin-left: 2px;
+}
+
+.cifra-divider {
+  width: 40px;
+  height: 3px;
+  background-color: #111111;
+  margin: 20px 0 24px 0;
+  transition: width 0.3s ease;
+}
+
+.cifra-card:hover .cifra-divider {
+  width: 60px;
+}
+
+.cifra-card h4 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #111111;
+  margin: 0 0 10px 0;
+}
+
+.cifra-card p {
+  font-size: 0.9rem;
+  color: #515154;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Banner de Fusión Asimétrico */
+.fusion-banner {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  background-color: #111111; /* Negro profundo corporativo */
+  border-radius: 16px;
+  overflow: hidden;
+  color: #FFFFFF;
+  box-shadow: 0 20px 40px rgba(17, 17, 17, 0.15);
+  min-height: 400px;
+}
+
+.fusion-col-text {
+  padding: 60px 80px 60px 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.subtitulo-mini {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: #86868B;
+  letter-spacing: 2px;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.fusion-col-text h3 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: -1px;
+  line-height: 1.2;
+  color: #FFFFFF;
+  margin: 0 0 20px 0;
+}
+
+.fusion-col-text p {
+  font-size: 1.05rem;
+  color: #A1A1A6;
+  line-height: 1.65;
+  margin: 0 0 32px 0;
+}
+
+.btn-text-link {
+  color: #FFFFFF;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: gap 0.2s ease;
+}
+
+.btn-text-link:hover {
+  gap: 12px;
+}
+
+/* Columna Visual de Escaneo LiDAR */
+.fusion-col-visual {
+  background-color: #09090B;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  min-height: 350px;
+}
+
+.fusion-video-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  pointer-events: none;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.fusion-video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(24, 24, 27, 0.4) 0%,
+    rgba(9, 9, 11, 0.75) 100%
+  );
+  z-index: 2;
+  pointer-events: none;
+}
+
+.visual-badge {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #FFFFFF;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 3;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.fusion-col-visual:hover .fusion-video-bg {
+  transform: scale(1.05);
+}
+
+/* ============================================================================
+   RESPONSIVO PARA NUEVA SECCIÓN
+   ============================================================================ */
+@media (max-width: 1200px) {
+  .fusion-banner {
+    grid-template-columns: 1.1fr 1fr;
+  }
+  .fusion-col-text {
+    padding: 48px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .impacto-content h2 {
+    font-size: 2.3rem;
+  }
+  .cifras-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  .fusion-banner {
+    grid-template-columns: 1fr;
+  }
+  .fusion-col-visual {
+    min-height: 250px;
+    border-left: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+}
+
+@media (max-width: 768px) {
+  .impacto-seccion {
+    padding: 80px 16px;
+  }
+  .impacto-content h2 {
+    font-size: 1.9rem;
+  }
+  .cifras-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .cifra-card {
+    padding: 30px 24px;
+  }
+  .fusion-col-text {
+    padding: 36px 24px;
+  }
+  .fusion-col-text h3 {
+    font-size: 1.75rem;
+  }
+}
+

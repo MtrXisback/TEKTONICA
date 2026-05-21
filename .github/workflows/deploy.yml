@@ -1,0 +1,36 @@
+name: Despliegue Continuo de ProyectoGeo en GCP (sslip.io)
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git Checkout del Código
+        uses: actions/checkout@v3
+
+      - name: Ejecutar Despliegue en GCP vía SSH
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.GCP_SSH_IP }}
+          username: ${{ secrets.GCP_SSH_USER }}
+          key: ${{ secrets.GCP_SSH_KEY }}
+          port: 22
+          script: |
+            echo "==== Iniciando despliegue de TEKTONICA (sslip.io) ===="
+            cd ~/ProyectoGeo
+            
+            echo "1. Trayendo última versión desde GitHub..."
+            git pull origin main
+            
+            echo "2. Reconstruyendo contenedores Docker..."
+            docker-compose down
+            docker-compose up --build -d
+            
+            echo "3. Limpieza de imágenes en desuso..."
+            docker image prune -f
+            
+            echo "==== ¡Despliegue completado con éxito en GCP! ===="

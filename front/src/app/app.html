@@ -1,0 +1,120 @@
+<!-- Contenedor Principal de ProyectoGeo -->
+<div class="app-container">
+  
+  <!-- Encabezado Principal Premium (Navbar Minimalista Corporativo) -->
+  <header class="main-navbar">
+    <div class="nav-container">
+      <div class="nav-brand">
+        <a routerLink="/">
+          <!-- Isotipo Vectorial Oficial de Tektonica (Prisma 3D, Planeta e Intersección Satelital) -->
+          <svg class="brand-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+            <!-- Prisma / Diamante Tridimensional Facetado -->
+            <polygon points="50,5 90,70 50,95 10,70" stroke="currentColor" stroke-width="4.5" stroke-linejoin="round"/>
+            <line x1="50" y1="5" x2="50" y2="95" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+            <line x1="10" y1="70" x2="50" y2="72" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+            <line x1="90" y1="70" x2="50" y2="72" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+            <line x1="10" y1="70" x2="50" y2="48" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+            <line x1="90" y1="70" x2="50" y2="48" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+            
+            <!-- Planeta Central (Relleno con el color de fondo para superposición visual) -->
+            <circle cx="50" cy="48" r="18" fill="var(--bg-global)" stroke="currentColor" stroke-width="4.5"/>
+            
+            <!-- Órbita Satelital Curva e Inclinada -->
+            <path d="M 23,60 C 23,60 38,40 68,28" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" fill="none" />
+            
+            <!-- Satélite Geoespacial con Paneles Solares -->
+            <g transform="translate(68, 28) rotate(-35)">
+              <!-- Cuerpo del satélite -->
+              <rect x="-3" y="-3" width="6" height="6" fill="currentColor" rx="1"/>
+              <!-- Antena y Cono orientados al planeta -->
+              <path d="M 0,3 L 0,6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="0" cy="6" r="1.5" fill="currentColor"/>
+              <!-- Paneles solares simétricos a ambos lados -->
+              <line x1="-3" y1="0" x2="-10" y2="0" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+              <line x1="3" y1="0" x2="10" y2="0" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+              <!-- Rejillas laterales de los paneles -->
+              <line x1="-10" y1="-3" x2="-10" y2="3" stroke="currentColor" stroke-width="1.5"/>
+              <line x1="10" y1="-3" x2="10" y2="3" stroke="currentColor" stroke-width="1.5"/>
+            </g>
+          </svg>
+          <span class="brand-text">TEKTONICA</span>
+        </a>
+      </div>
+      
+      <nav class="nav-links">
+        <a routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+          <span class="nav-text">Inicio</span>
+        </a>
+        <a routerLink="/catalogo" routerLinkActive="active-link">
+          <span class="nav-text">Catálogo Técnico</span>
+        </a>
+        <a routerLink="/contacto" class="btn-nav-cta bg-transparent border border-black text-black transition-colors duration-300 hover:bg-black hover:text-white">
+          Solicitar Cotización
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Contenido Dinámico de las Páginas -->
+  <main class="main-content">
+    <router-outlet></router-outlet>
+  </main>
+
+  <!-- Pie de Página Minimalista y Sobrio (Estilo Apple / Samsung Enterprise) -->
+  <footer class="main-footer">
+    <div class="footer-grid">
+      <!-- Bloque 1: Info General -->
+      <div class="footer-block footer-info">
+        <h3>TEKTONICA</h3>
+        <p class="tech-p">Soluciones geoespaciales y geológicas de alta precisión para minería, infraestructura, ingeniería civil y agricultura de precisión.</p>
+      </div>
+
+      <!-- Bloque 2: Enlaces de Plataforma -->
+      <div class="footer-block footer-links">
+        <h4>Nuestra Plataforma</h4>
+        <ul>
+          <li><a routerLink="/">Inicio</a></li>
+          <li><a routerLink="/catalogo">Catálogo Técnico</a></li>
+          <li><a [routerLink]="['/quienes-somos']" class="hover:text-zinc-950 transition-colors">Quiénes Somos</a></li>
+          <li><a routerLink="/contacto">Solicitar Cotización</a></li>
+        </ul>
+      </div>
+
+      <!-- Bloque 3: Datos de Contacto del Sistema -->
+      <div class="footer-block footer-contact">
+        <h4>Contacto Comercial</h4>
+        <div class="contact-params">
+          <p class="param-item">
+            <span class="param-label">Email:</span>
+            <a href="mailto:soporte@tektonica.com" class="param-val">soporte@tektonica.com</a>
+          </p>
+          <p class="param-item">
+            <span class="param-label">Teléfono:</span>
+            <span class="param-val">+51 987 654 321</span>
+          </p>
+          <p class="param-item">
+            <span class="param-label">Ubicación:</span>
+            <span class="param-val">San Isidro, Lima - Perú</span>
+          </p>
+          <p class="param-item">
+            <span class="param-label">Dirección:</span>
+            <span class="param-val">Av. Javier Prado Este 1024</span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Franja inferior de Copyright Minimalista -->
+    <div class="footer-status-bar">
+      <div class="status-left">
+        <span class="copyright-text">&copy; 2026 Tektonica S.A. Todos los derechos reservados.</span>
+      </div>
+      <div class="status-right">
+        <a [routerLink]="['/terminos-de-servicio']" class="status-link">Términos de Servicio</a>
+        <span class="status-separator">|</span>
+        <a routerLink="/privacy-policy" class="status-link">Políticas de Privacidad</a>
+      </div>
+    </div>
+  </footer>
+
+</div>
